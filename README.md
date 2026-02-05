@@ -2,7 +2,7 @@
 
 Plataforma web inmobiliaria desarrollada como **proyecto académico de gran envergadura**, enfocada en la gestión de propiedades sostenibles y eficiencia energética, utilizando **Laravel**, **Vue.js** y **TailwindCSS**.
 
-<br><br>
+<br>
 
 ## 📌 Descripción del Proyecto
 
@@ -15,7 +15,7 @@ SERRAINNOVA es una plataforma orientada a ofrecer **soluciones inmobiliarias sos
 
 El proyecto combina un **frontend moderno y responsive** con TailwindCSS y Vue.js, junto con un **backend robusto** basado en Laravel, ofreciendo un sistema escalable y profesional.
 
-<br><br>
+<br>
 
 ## 🛠 Tecnologías Utilizadas
 
@@ -33,7 +33,7 @@ El proyecto combina un **frontend moderno y responsive** con TailwindCSS y Vue.j
   - Git para control de versiones
   - Vite como bundler
 
-<br><br>
+<br>
 
 ## 🏗 Estructura del Proyecto
 
@@ -52,7 +52,7 @@ El proyecto combina un **frontend moderno y responsive** con TailwindCSS y Vue.j
 └─ tests/              # Pruebas unitarias y de integración
 ```
 
-<br><br>
+<br>
 
 ## 🚀 Instalación y Configuración
 
@@ -81,7 +81,7 @@ php artisan serve
 npm run dev
 ```
 
-<br><br>
+<br>
 
 ## ⚙ Funcionalidades Principales
 
@@ -101,7 +101,7 @@ npm run dev
    - Adaptación a dispositivos móviles, tablets y escritorio.
    - Sistema Light/Dark Mode.
 
-<br><br>
+<br>
 
 ## 🎨 Guía de Estilos (Tailwind + Figma)
 
@@ -115,7 +115,7 @@ npm run dev
 - **Border Radius:** sm (0.25rem), lg (0.5rem), xl (0.75rem), full (9999px)
 - **Componentes base:** Botones, tarjetas, formularios, navbar, footer
 
-<br><br>
+<br>
 
 ## 📂 Plan Futuro
 
@@ -126,13 +126,13 @@ npm run dev
 - Versiones multi-idioma (ES / EN / FR).
 - Preparación para **producción y deployment**.
 
-<br><br>
+<br>
 
 ## 📝 Licencia
 
 Este proyecto se distribuye bajo la licencia **MIT**.
 
-<br><br>
+<br>
 
 ## 📞 Contacto
 
