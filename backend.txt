@@ -1,0 +1,3 @@
+Pongo el enlace a la carpeta subida en drive, ya que no me deja subirlo de otra manera, aun asi no está completo. Faltarían hacer los seeders y la conexion con el front de Vue
+
+https://drive.google.com/drive/folders/1nYPFadm6x1NkgCD5J3eU76hMqNu2Xa2t?usp=drive_link
