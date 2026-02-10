@@ -76,7 +76,7 @@
                     {{ user.role }}
                   </span>
                 </td>
-                <td class="px-6 py-4">{{ user.registeredAt }}</td>
+                <td class="px-6 py-4">{{ user.registrationDate }}</td>
                 <td class="px-6 py-4">
                   <div class="flex gap-2">
                     <button

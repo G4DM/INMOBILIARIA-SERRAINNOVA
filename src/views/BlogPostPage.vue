@@ -71,21 +71,11 @@
   </main>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref } from 'vue'
 
-interface BlogPost {
-  id: number
-  title: string
-  excerpt: string
-  content: string
-  category: string
-  date: string
-  image: string
-}
-
 // En una aplicación real, esto obtendría datos de una API basándose en route.params.id
-const post = ref<BlogPost>({
+const post = ref({
   id: 1,
   title: 'Cómo reducir tu factura de luz hasta un 60% con energía solar',
   excerpt: 'Descubre las claves para maximizar el ahorro en tu factura eléctrica mediante la instalación de paneles solares y sistemas de autoconsumo.',

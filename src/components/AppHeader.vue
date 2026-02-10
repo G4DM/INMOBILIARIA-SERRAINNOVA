@@ -1,27 +1,27 @@
 <template>
-  <header class="sticky top-0 z-50 w-full border-b border-solid border-[#e7f3eb] dark:border-[#1a3022] bg-background-light dark:bg-background-dark backdrop-blur-md">
+  <header class="sticky top-0 z-50 w-full border-b border-solid border-white/10 bg-[#102216] text-white backdrop-blur-md">
     <div class="flex items-center justify-between max-w-[1200px] mx-auto px-6 lg:px-8 py-4">
       <div class="flex items-center gap-3">
         <img src="../assets/logo.png" alt="SERRAINOVA Logo" class="h-8 w-auto" />
-        <h2 class="text-lg font-bold tracking-tight">SERRAINOVA</h2>
+        <h2 class="text-lg font-bold tracking-tight text-white">SERRAINOVA</h2>
       </div>
       
       <!-- Navegación de Escritorio -->
       <nav class="hidden md:flex items-center gap-8">
-        <router-link class="text-sm font-medium hover:text-primary transition-colors" to="/">Inicio</router-link>
-        <router-link class="text-sm font-medium hover:text-primary transition-colors" to="/propiedades">Propiedades</router-link>
-        <router-link class="text-sm font-medium hover:text-primary transition-colors" to="/quienes-somos">Quiénes Somos</router-link>
-        <router-link class="text-sm font-medium hover:text-primary transition-colors" to="/servicios">Servicios</router-link>
-        <router-link class="text-sm font-medium hover:text-primary transition-colors" to="/blog">Blog</router-link>
-        <router-link class="text-sm font-medium hover:text-primary transition-colors" to="/calculadora">Impacto</router-link>
-        <router-link class="text-sm font-medium hover:text-primary transition-colors" to="/contacto">Contacto</router-link>
-        <router-link class="text-sm font-medium hover:text-primary transition-colors bg-primary/10 px-3 py-1.5 rounded-lg" to="/admin">Administrador</router-link>
+        <router-link class="text-sm font-medium hover:text-primary transition-colors text-white/90" to="/">Inicio</router-link>
+        <router-link class="text-sm font-medium hover:text-primary transition-colors text-white/90" to="/propiedades">Propiedades</router-link>
+        <router-link class="text-sm font-medium hover:text-primary transition-colors text-white/90" to="/quienes-somos">Quiénes Somos</router-link>
+        <router-link class="text-sm font-medium hover:text-primary transition-colors text-white/90" to="/servicios">Servicios</router-link>
+        <router-link class="text-sm font-medium hover:text-primary transition-colors text-white/90" to="/blog">Blog</router-link>
+        <router-link class="text-sm font-medium hover:text-primary transition-colors text-white/90" to="/calculadora">Impacto</router-link>
+        <router-link class="text-sm font-medium hover:text-primary transition-colors text-white/90" to="/contacto">Contacto</router-link>
+        <router-link class="text-sm font-medium hover:text-primary transition-colors bg-white/10 px-3 py-1.5 rounded-lg text-white" to="/admin">Administrador</router-link>
       </nav>
 
       <!-- Botón de Menú Móvil -->
       <button 
         @click="toggleMenu"
-        class="md:hidden p-2 hover:bg-[#e7f3eb] dark:hover:bg-[#1a3022] rounded-lg transition-all duration-300 hover:scale-110"
+        class="md:hidden p-2 hover:bg-white/10 rounded-lg transition-all duration-300 hover:scale-110 text-white"
         aria-label="Toggle menu"
       >
         <span class="material-symbols-outlined text-2xl transition-transform duration-300" :class="{ 'rotate-90': isMenuOpen }">
@@ -34,12 +34,12 @@
     <Transition name="slide-down">
       <div 
         v-show="isMenuOpen" 
-        class="md:hidden border-t border-[#e7f3eb] dark:border-[#1a3022] bg-background-light dark:bg-background-dark overflow-hidden"
+        class="md:hidden border-t border-white/10 bg-[#102216] overflow-hidden"
       >
         <nav class="flex flex-col max-w-[1200px] mx-auto">
           <router-link 
             @click="closeMenu"
-            class="menu-item py-4 px-6 text-sm font-medium border-b border-[#e7f3eb] dark:border-[#1a3022] transition-all duration-300 hover:bg-[#e7f3eb] dark:hover:bg-[#1a3022] hover:pl-8 hover:text-primary" 
+            class="menu-item py-4 px-6 text-sm font-medium border-b border-white/10 transition-all duration-300 hover:bg-white/10 hover:pl-8 hover:text-primary text-white/90" 
             to="/"
           >
             <span class="flex items-center gap-2">
@@ -49,7 +49,7 @@
           </router-link>
           <router-link 
             @click="closeMenu"
-            class="menu-item py-4 px-6 text-sm font-medium border-b border-[#e7f3eb] dark:border-[#1a3022] transition-all duration-300 hover:bg-[#e7f3eb] dark:hover:bg-[#1a3022] hover:pl-8 hover:text-primary" 
+            class="menu-item py-4 px-6 text-sm font-medium border-b border-white/10 transition-all duration-300 hover:bg-white/10 hover:pl-8 hover:text-primary text-white/90" 
             to="/propiedades"
           >
             <span class="flex items-center gap-2">
@@ -59,7 +59,7 @@
           </router-link>
           <router-link 
             @click="closeMenu"
-            class="menu-item py-4 px-6 text-sm font-medium border-b border-[#e7f3eb] dark:border-[#1a3022] transition-all duration-300 hover:bg-[#e7f3eb] dark:hover:bg-[#1a3022] hover:pl-8 hover:text-primary" 
+            class="menu-item py-4 px-6 text-sm font-medium border-b border-white/10 transition-all duration-300 hover:bg-white/10 hover:pl-8 hover:text-primary text-white/90" 
             to="/quienes-somos"
           >
             <span class="flex items-center gap-2">
@@ -69,7 +69,7 @@
           </router-link>
           <router-link 
             @click="closeMenu"
-            class="menu-item py-4 px-6 text-sm font-medium border-b border-[#e7f3eb] dark:border-[#1a3022] transition-all duration-300 hover:bg-[#e7f3eb] dark:hover:bg-[#1a3022] hover:pl-8 hover:text-primary" 
+            class="menu-item py-4 px-6 text-sm font-medium border-b border-white/10 transition-all duration-300 hover:bg-white/10 hover:pl-8 hover:text-primary text-white/90" 
             to="/servicios"
           >
             <span class="flex items-center gap-2">
@@ -79,7 +79,7 @@
           </router-link>
           <router-link 
             @click="closeMenu"
-            class="menu-item py-4 px-6 text-sm font-medium border-b border-[#e7f3eb] dark:border-[#1a3022] transition-all duration-300 hover:bg-[#e7f3eb] dark:hover:bg-[#1a3022] hover:pl-8 hover:text-primary" 
+            class="menu-item py-4 px-6 text-sm font-medium border-b border-white/10 transition-all duration-300 hover:bg-white/10 hover:pl-8 hover:text-primary text-white/90" 
             to="/blog"
           >
             <span class="flex items-center gap-2">
@@ -89,7 +89,7 @@
           </router-link>
           <router-link 
             @click="closeMenu"
-            class="menu-item py-4 px-6 text-sm font-medium border-b border-[#e7f3eb] dark:border-[#1a3022] transition-all duration-300 hover:bg-[#e7f3eb] dark:hover:bg-[#1a3022] hover:pl-8 hover:text-primary" 
+            class="menu-item py-4 px-6 text-sm font-medium border-b border-white/10 transition-all duration-300 hover:bg-white/10 hover:pl-8 hover:text-primary text-white/90" 
             to="/calculadora"
           >
             <span class="flex items-center gap-2">
@@ -99,7 +99,7 @@
           </router-link>
           <router-link 
             @click="closeMenu"
-            class="menu-item py-4 px-6 text-sm font-medium transition-all duration-300 hover:bg-[#e7f3eb] dark:hover:bg-[#1a3022] hover:pl-8 hover:text-primary" 
+            class="menu-item py-4 px-6 text-sm font-medium transition-all duration-300 hover:bg-white/10 hover:pl-8 hover:text-primary text-white/90" 
             to="/contacto"
           >
             <span class="flex items-center gap-2">
@@ -109,7 +109,7 @@
           </router-link>
           <router-link 
             @click="closeMenu"
-            class="menu-item py-4 px-6 text-sm font-medium transition-all duration-300 hover:bg-[#e7f3eb] dark:hover:bg-[#1a3022] hover:pl-8 hover:text-primary bg-primary/10" 
+            class="menu-item py-4 px-6 text-sm font-medium transition-all duration-300 hover:bg-white/10 hover:pl-8 hover:text-primary bg-white/5 text-white" 
             to="/admin"
           >
             <span class="flex items-center gap-2">
@@ -123,7 +123,7 @@
   </header>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref } from 'vue'
 
 const isMenuOpen = ref(false)

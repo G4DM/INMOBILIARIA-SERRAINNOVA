@@ -88,7 +88,7 @@
   </main>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref, computed } from 'vue'
 import PropertyFilters from '../components/PropertyFilters.vue'
 import { properties as allProperties } from '../data/properties'
@@ -96,12 +96,12 @@ import { properties as allProperties } from '../data/properties'
 const properties = ref(allProperties)
 
 const filters = ref({
-  certifications: [] as string[],
-  energyTypes: [] as string[],
-  materials: [] as string[]
+  certifications: [],
+  energyTypes: [],
+  materials: []
 })
 
-const handleFilterChange = (newFilters: typeof filters.value) => {
+const handleFilterChange = (newFilters) => {
   filters.value = newFilters
 }
 
@@ -123,8 +123,8 @@ const filteredProperties = computed(() => {
   })
 })
 
-const getCertificationColor = (cert: string) => {
-  const colors: Record<string, string> = {
+const getCertificationColor = (cert) => {
+  const colors = {
     'A': 'bg-[#059669]',
     'B': 'bg-[#10b981]',
     'C': 'bg-[#84cc16]',
