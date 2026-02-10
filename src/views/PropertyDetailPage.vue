@@ -247,21 +247,21 @@
   </main>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-import { getPropertyById, type Property } from '../data/properties'
+import { getPropertyById } from '../data/properties'
 
 const route = useRoute()
-const property = ref<Property | undefined>()
+const property = ref()
 
 onMounted(() => {
-  const id = parseInt(route.params.id as string)
+  const id = parseInt(route.params.id)
   property.value = getPropertyById(id)
 })
 
-const getCertificationColor = (cert: string) => {
-  const colors: Record<string, string> = {
+const getCertificationColor = (cert) => {
+  const colors = {
     'A': 'bg-[#059669]',
     'B': 'bg-[#10b981]',
     'C': 'bg-[#84cc16]',

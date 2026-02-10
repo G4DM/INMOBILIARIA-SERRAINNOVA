@@ -70,14 +70,14 @@
   </main>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref, computed } from 'vue'
-import { blogPosts as importedBlogPosts, blogCategories, type BlogPost } from '../data/blogPosts'
+import { blogPosts as importedBlogPosts, blogCategories } from '../data/blogPosts'
 
 const categories = blogCategories
-const selectedCategory = ref<string | null>(null)
+const selectedCategory = ref(null)
 
-const posts = ref<BlogPost[]>([...importedBlogPosts])
+const posts = ref([...importedBlogPosts])
 
 const filteredPosts = computed(() => {
   // Filtrar blogs ocultos y por categoría

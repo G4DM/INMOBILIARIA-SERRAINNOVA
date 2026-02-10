@@ -78,24 +78,18 @@
   </aside>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref, watch } from 'vue'
 
 const certifications = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 const energyTypes = ['Aerotermia', 'Solar', 'Biomasa']
 const materials = ['Madera', 'Hormigón ecológico', 'Ladrillo reciclado']
 
-const selectedCertifications = ref<string[]>([])
-const selectedEnergyTypes = ref<string[]>([])
-const selectedMaterials = ref<string[]>([])
+const selectedCertifications = ref([])
+const selectedEnergyTypes = ref([])
+const selectedMaterials = ref([])
 
-const emit = defineEmits<{
-  filterChange: [filters: {
-    certifications: string[]
-    energyTypes: string[]
-    materials: string[]
-  }]
-}>()
+const emit = defineEmits(['filterChange'])
 
 const clearFilters = () => {
   selectedCertifications.value = []
