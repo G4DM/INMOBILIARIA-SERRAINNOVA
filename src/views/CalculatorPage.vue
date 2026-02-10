@@ -6,7 +6,7 @@
         <p class="text-[#4c9a66] dark:text-[#a0ccb0]">Descubre cuánto podrías ahorrar con una vivienda sostenible</p>
       </div>
       
-      <!-- Calculator Form -->
+      <!-- Formulario de Calculadora -->
       <div class="space-y-6 mb-8">
         <div>
           <label class="block text-sm font-bold mb-2">Tamaño de la Vivienda (m²)</label>
@@ -23,7 +23,11 @@
           <select v-model="targetRating" class="w-full px-4 py-3 rounded-lg border border-[#cfe7d7] dark:border-[#2a4a35] bg-[#f6f8f6] dark:bg-[#102216] focus:ring-2 focus:ring-primary">
             <option value="A">Calificación A (Máxima eficiencia)</option>
             <option value="B">Calificación B (Alta eficiencia)</option>
-            <option value="C">Calificación C (Eficiencia media)</option>
+            <option value="C">Calificación C (Eficiencia media-alta)</option>
+            <option value="D">Calificación D (Eficiencia media)</option>
+            <option value="E">Calificación E (Eficiencia media-baja)</option>
+            <option value="F">Calificación F (Baja eficiencia)</option>
+            <option value="G">Calificación G (Muy baja eficiencia)</option>
           </select>
         </div>
         
@@ -33,7 +37,7 @@
         </button>
       </div>
       
-      <!-- Results -->
+      <!-- Resultados -->
       <div v-if="showResults" class="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 bg-[#e7f3eb] dark:bg-[#1a3022] rounded-xl">
         <div class="text-center">
           <span class="material-symbols-outlined text-primary text-4xl">savings</span>
@@ -55,7 +59,7 @@
   </main>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref } from 'vue'
 
 const homeSize = ref(150)
@@ -67,11 +71,21 @@ const co2Reduction = ref(0)
 const consumptionReduction = ref(0)
 
 const calculate = () => {
-  // Simple calculation logic
-  const reductionFactor = targetRating.value === 'A' ? 0.6 : targetRating.value === 'B' ? 0.4 : 0.25
+  // Lógica de cálculo simple - factores de reducción según calificación energética
+  const reductionFactors = {
+    'A': 0.65,  // Máxima eficiencia
+    'B': 0.50,  // Alta eficiencia
+    'C': 0.35,  // Eficiencia media-alta
+    'D': 0.25,  // Eficiencia media
+    'E': 0.15,  // Eficiencia media-baja
+    'F': 0.08,  // Baja eficiencia
+    'G': 0.03   // Muy baja eficiencia
+  }
+  
+  const reductionFactor = reductionFactors[targetRating.value] || 0.25
   consumptionReduction.value = Math.round(reductionFactor * 100)
-  savings.value = Math.round(currentConsumption.value * reductionFactor * 0.15) // Assuming 0.15€/kWh
-  co2Reduction.value = Math.round(currentConsumption.value * reductionFactor * 0.4) // Assuming 0.4kg CO2/kWh
+  savings.value = Math.round(currentConsumption.value * reductionFactor * 0.15) // Asumiendo 0.15€/kWh
+  co2Reduction.value = Math.round(currentConsumption.value * reductionFactor * 0.4) // Asumiendo 0.4kg CO2/kWh
   showResults.value = true
 }
 </script>

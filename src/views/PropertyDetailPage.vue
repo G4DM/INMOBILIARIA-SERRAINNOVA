@@ -7,7 +7,7 @@
     </div>
 
     <div v-else class="bg-white dark:bg-[#152a1c] rounded-xl overflow-hidden shadow-lg border border-[#cfe7d7] dark:border-[#2a4a35]">
-      <!-- Image Gallery -->
+      <!-- Galería de Imágenes -->
       <div class="relative h-96 overflow-hidden">
         <img class="w-full h-full object-cover" :src="property.image" :alt="property.title"/>
         <div class="absolute top-4 left-4 flex gap-2">
@@ -23,9 +23,9 @@
         </div>
       </div>
       
-      <!-- Property Details -->
+      <!-- Detalles de la Propiedad -->
       <div class="p-8">
-        <!-- CO2 Comparison Badge -->
+        <!-- Distintivo de Comparación de CO2 -->
         <div class="mb-6 bg-[#059669]/10 border border-[#059669]/20 rounded-lg p-4">
           <div class="flex items-center gap-2 text-[#059669] dark:text-[#10b981]">
             <span class="material-symbols-outlined text-2xl">eco</span>
@@ -46,7 +46,7 @@
           <p class="text-4xl font-black text-primary">{{ property.price }}€</p>
         </div>
         
-        <!-- Key Features -->
+        <!-- Características Principales -->
         <div class="grid grid-cols-3 gap-4 mb-8 p-6 bg-[#e7f3eb] dark:bg-[#1a3022] rounded-xl">
           <div class="text-center">
             <span class="material-symbols-outlined text-primary text-3xl">bed</span>
@@ -62,7 +62,7 @@
           </div>
         </div>
 
-        <!-- Energy Info -->
+        <!-- Información Energética -->
         <div class="mb-8 p-6 bg-white dark:bg-[#0d1b12] rounded-xl border border-[#cfe7d7] dark:border-[#2a4a35]">
           <h3 class="font-bold mb-4">Información Energética</h3>
           <div class="grid grid-cols-2 gap-4">
@@ -93,7 +93,7 @@
           </div>
         </div>
         
-        <!-- Description -->
+        <!-- Descripción -->
         <div class="mb-8">
           <h2 class="text-2xl font-bold mb-4">Descripción</h2>
           <p class="text-[#4c9a66] dark:text-[#a0ccb0] leading-relaxed">
@@ -101,7 +101,7 @@
           </p>
         </div>
         
-        <!-- Sustainability Features -->
+        <!-- Características Sostenibles -->
         <div class="mb-8">
           <h2 class="text-2xl font-bold mb-4">Características Sostenibles</h2>
           <div class="grid grid-cols-2 gap-4">
@@ -116,11 +116,11 @@
           </div>
         </div>
 
-        <!-- Sustainability Checklist -->
+        <!-- Checklist de Sostenibilidad -->
         <div class="mb-8">
           <h2 class="text-2xl font-bold mb-6">Checklist de Sostenibilidad</h2>
           
-          <!-- Thermal Insulation -->
+          <!-- Aislamiento Térmico -->
           <div class="mb-6">
             <h3 class="font-bold mb-3 text-[#4c9a66] dark:text-[#a0ccb0]">Aislamiento Térmico</h3>
             <div class="grid grid-cols-2 gap-3">
@@ -145,7 +145,7 @@
             </div>
           </div>
 
-          <!-- Energy Sources -->
+          <!-- Fuentes de Energía -->
           <div class="mb-6">
             <h3 class="font-bold mb-3 text-[#4c9a66] dark:text-[#a0ccb0]">Fuentes de Energía</h3>
             <div class="grid grid-cols-2 gap-3">
@@ -170,7 +170,7 @@
             </div>
           </div>
 
-          <!-- Water Consumption -->
+          <!-- Consumo de Agua -->
           <div class="mb-6">
             <h3 class="font-bold mb-3 text-[#4c9a66] dark:text-[#a0ccb0]">Consumo de Agua</h3>
             <div class="flex items-center gap-2">
@@ -184,7 +184,7 @@
             </div>
           </div>
 
-          <!-- Materials -->
+          <!-- Materiales -->
           <div class="mb-6">
             <h3 class="font-bold mb-3 text-[#4c9a66] dark:text-[#a0ccb0]">Materiales</h3>
             <div class="grid grid-cols-2 gap-3">
@@ -210,7 +210,7 @@
           </div>
         </div>
 
-        <!-- External Certifications -->
+        <!-- Certificaciones Externas -->
         <div v-if="property.certifications.length > 0" class="mb-8">
           <h2 class="text-2xl font-bold mb-4">Certificaciones Externas</h2>
           <div class="flex flex-wrap gap-4">
@@ -225,7 +225,7 @@
           </div>
         </div>
         
-        <!-- Contact CTA -->
+        <!-- Llamada a la Acción de Contacto -->
         <div class="flex gap-4">
           <router-link 
             to="/contacto"

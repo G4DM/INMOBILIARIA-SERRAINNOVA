@@ -1,7 +1,7 @@
 <template>
   <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="grid md:grid-cols-2 gap-12">
-      <!-- Contact Form -->
+      <!-- Formulario de Contacto -->
       <div>
         <h1 class="text-3xl md:text-4xl font-black mb-4">Contacta con Nosotros</h1>
         <p class="text-[#4c9a66] dark:text-[#a0ccb0] mb-8">
@@ -89,7 +89,7 @@
         </div>
       </div>
 
-      <!-- Contact Information -->
+      <!-- Información de Contacto -->
       <div>
         <div class="bg-white dark:bg-[#152a1c] rounded-xl p-8 border border-[#cfe7d7] dark:border-[#2a4a35] mb-8">
           <h2 class="text-2xl font-black mb-6">Información de Contacto</h2>
@@ -143,7 +143,7 @@
           </div>
         </div>
 
-        <!-- Map Placeholder -->
+        <!-- Marcador de Posición del Mapa -->
         <div class="bg-[#e7f3eb] dark:bg-[#1a3022] rounded-xl h-64 flex items-center justify-center border border-[#cfe7d7] dark:border-[#2a4a35]">
           <div class="text-center">
             <span class="material-symbols-outlined text-6xl text-primary mb-2">map</span>
@@ -169,11 +169,11 @@ const form = ref({
 const submitted = ref(false)
 
 const handleSubmit = () => {
-  // In a real app, this would send the form data to a backend
+  // En una aplicación real, esto enviaría los datos del formulario a un backend
   console.log('Form submitted:', form.value)
   submitted.value = true
   
-  // Reset form after 3 seconds
+  // Reiniciar formulario después de 3 segundos
   setTimeout(() => {
     form.value = {
       name: '',

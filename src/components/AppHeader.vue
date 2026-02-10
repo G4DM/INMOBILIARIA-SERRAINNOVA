@@ -6,7 +6,7 @@
         <h2 class="text-lg font-bold tracking-tight">SERRAINOVA</h2>
       </div>
       
-      <!-- Desktop Navigation -->
+      <!-- Navegación de Escritorio -->
       <nav class="hidden md:flex items-center gap-8">
         <router-link class="text-sm font-medium hover:text-primary transition-colors" to="/">Inicio</router-link>
         <router-link class="text-sm font-medium hover:text-primary transition-colors" to="/propiedades">Propiedades</router-link>
@@ -15,9 +15,10 @@
         <router-link class="text-sm font-medium hover:text-primary transition-colors" to="/blog">Blog</router-link>
         <router-link class="text-sm font-medium hover:text-primary transition-colors" to="/calculadora">Impacto</router-link>
         <router-link class="text-sm font-medium hover:text-primary transition-colors" to="/contacto">Contacto</router-link>
+        <router-link class="text-sm font-medium hover:text-primary transition-colors bg-primary/10 px-3 py-1.5 rounded-lg" to="/admin">Administrador</router-link>
       </nav>
 
-      <!-- Mobile Menu Button -->
+      <!-- Botón de Menú Móvil -->
       <button 
         @click="toggleMenu"
         class="md:hidden p-2 hover:bg-[#e7f3eb] dark:hover:bg-[#1a3022] rounded-lg transition-all duration-300 hover:scale-110"
@@ -29,7 +30,7 @@
       </button>
     </div>
 
-    <!-- Mobile Navigation Menu -->
+    <!-- Menú de Navegación Móvil -->
     <Transition name="slide-down">
       <div 
         v-show="isMenuOpen" 
@@ -106,6 +107,16 @@
               Contacto
             </span>
           </router-link>
+          <router-link 
+            @click="closeMenu"
+            class="menu-item py-4 px-6 text-sm font-medium transition-all duration-300 hover:bg-[#e7f3eb] dark:hover:bg-[#1a3022] hover:pl-8 hover:text-primary bg-primary/10" 
+            to="/admin"
+          >
+            <span class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-lg">admin_panel_settings</span>
+              Administrador
+            </span>
+          </router-link>
         </nav>
       </div>
     </Transition>
@@ -127,7 +138,7 @@ const closeMenu = () => {
 </script>
 
 <style scoped>
-/* Slide down transition for mobile menu */
+/* Transición de deslizamiento hacia abajo para menú móvil */
 .slide-down-enter-active {
   animation: slideDown 0.3s ease-out;
 }
@@ -158,7 +169,7 @@ const closeMenu = () => {
   }
 }
 
-/* Menu item animation */
+/* Animación de elementos del menú */
 .menu-item {
   animation: fadeInLeft 0.3s ease-out backwards;
 }

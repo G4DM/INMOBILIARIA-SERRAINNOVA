@@ -1,6 +1,6 @@
 <template>
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <!-- Hero Section -->
+    <!-- Sección Principal -->
     <section class="text-center mb-20">
       <h1 class="text-4xl md:text-6xl font-black mb-6">Quiénes Somos</h1>
       <p class="text-xl text-[#4c9a66] dark:text-[#a0ccb0] max-w-3xl mx-auto leading-relaxed">
@@ -9,7 +9,7 @@
       </p>
     </section>
 
-    <!-- Mission, Vision, Values -->
+    <!-- Misión, Visión, Valores -->
     <section class="grid md:grid-cols-3 gap-8 mb-20">
       <div class="bg-white dark:bg-[#152a1c] rounded-xl p-8 border border-[#cfe7d7] dark:border-[#2a4a35]">
         <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
@@ -61,7 +61,7 @@
       </div>
     </section>
 
-    <!-- Impact Metrics -->
+    <!-- Métricas de Impacto -->
     <section class="bg-primary rounded-2xl p-12 mb-20">
       <h2 class="text-3xl font-black text-[#0d1b12] text-center mb-12">Nuestro Impacto</h2>
       <div class="grid md:grid-cols-3 gap-8">
@@ -83,7 +83,7 @@
       </div>
     </section>
 
-    <!-- SDG Commitments -->
+    <!-- Compromisos con los ODS -->
     <section class="mb-20">
       <h2 class="text-3xl font-black text-center mb-6">Compromisos con los ODS</h2>
       <p class="text-center text-[#4c9a66] dark:text-[#a0ccb0] mb-12 max-w-3xl mx-auto">
@@ -129,7 +129,7 @@
       </div>
     </section>
 
-    <!-- Team/History Section -->
+    <!-- Sección de Equipo/Historia -->
     <section class="bg-[#e7f3eb] dark:bg-[#1a3022] rounded-2xl p-12">
       <div class="max-w-4xl mx-auto">
         <h2 class="text-3xl font-black mb-6">Nuestra Historia</h2>

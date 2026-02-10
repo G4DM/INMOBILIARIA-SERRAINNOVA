@@ -1,6 +1,6 @@
 <template>
   <main class="flex flex-col items-center flex-1">
-    <!-- Hero Section -->
+    <!-- Sección Principal -->
     <section class="w-full max-w-[1200px] px-4 md:px-10 py-10">
       <div class="@container">
         <div class="relative min-h-[520px] flex flex-col items-center justify-center p-8 rounded-xl overflow-hidden bg-cover bg-center" style='background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBtS6z9_dSqmxXFbVgI5jlFOEOOYP57IxznO_pHBRS95BgpZQL2yeBiqYrjykH5SecZtIpmxtZQaxMHTDvAJEkW29SFdtoOUJsJbaW3X7_Ict_Fi4zWQncNvFR9K8BSbEiNYU7qWtmBjuAt4OUpLiae47B9BefQd8fWd1nr9RzB3WkgSMDgRsXMXjxTyMjUgo_RHstcqbVLS1sbJ4qyL4uUjYnDYqW7O9yMSWFy6J7LO4rJjlRqQsnJ_PJaHcbMXLYAN9LX4HQdzbVn");'>
@@ -24,7 +24,7 @@
       </div>
     </section>
     
-    <!-- Stats Section -->
+    <!-- Sección de Estadísticas -->
     <section class="w-full max-w-[1200px] px-4 md:px-10 py-12">
       <div class="flex flex-col gap-6">
         <div class="px-4">
@@ -60,7 +60,7 @@
       </div>
     </section>
     
-    <!-- Services Section Header -->
+    <!-- Encabezado de Sección de Servicios -->
     <section class="w-full max-w-[1200px] px-4 md:px-10">
       <div class="flex flex-col md:flex-row md:items-end justify-between px-4 pb-6 pt-10 border-b border-[#e7f3eb] dark:border-[#1a3022]">
         <div>
@@ -73,7 +73,7 @@
       </div>
     </section>
     
-    <!-- Text Grid Services -->
+    <!-- Cuadrícula de Servicios -->
     <section class="w-full max-w-[1200px] px-4 md:px-10 py-8">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 p-4">
         <div class="group flex flex-col gap-4 rounded-xl border border-[#cfe7d7] dark:border-[#2a4a35] bg-white dark:bg-[#152a1c] p-8 hover:shadow-xl transition-all">
@@ -106,7 +106,7 @@
       </div>
     </section>
     
-    <!-- CTA Impact Section -->
+    <!-- Sección de Impacto con Llamada a la Acción -->
     <section class="w-full max-w-[1200px] px-4 md:px-14 py-16">
       <div class="bg-primary rounded-2xl p-8 md:p-16 flex flex-col md:flex-row items-center justify-between gap-10">
         <div class="text-[#0d1b12] max-w-xl">

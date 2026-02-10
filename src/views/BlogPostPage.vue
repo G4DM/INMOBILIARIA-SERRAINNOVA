@@ -1,6 +1,6 @@
 <template>
   <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <!-- Back Button -->
+    <!-- Botón de Retroceso -->
     <router-link 
       to="/blog"
       class="inline-flex items-center gap-2 text-primary font-medium mb-8 hover:gap-3 transition-all"
@@ -9,7 +9,7 @@
       Volver al blog
     </router-link>
 
-    <!-- Article Header -->
+    <!-- Encabezado del Artículo -->
     <article class="bg-white dark:bg-[#152a1c] rounded-xl overflow-hidden shadow-lg border border-[#cfe7d7] dark:border-[#2a4a35]">
       <div class="relative h-96 overflow-hidden">
         <img 
@@ -42,7 +42,7 @@
       </div>
     </article>
 
-    <!-- Related Posts -->
+    <!-- Artículos Relacionados -->
     <div class="mt-16">
       <h2 class="text-2xl font-bold mb-6">Artículos relacionados</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -84,7 +84,7 @@ interface BlogPost {
   image: string
 }
 
-// In a real app, this would fetch from an API based on route.params.id
+// En una aplicación real, esto obtendría datos de una API basándose en route.params.id
 const post = ref<BlogPost>({
   id: 1,
   title: 'Cómo reducir tu factura de luz hasta un 60% con energía solar',

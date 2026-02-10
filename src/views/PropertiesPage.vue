@@ -8,12 +8,12 @@
     </div>
     
     <div class="flex flex-col lg:flex-row gap-8">
-      <!-- Filters Sidebar -->
+      <!-- Barra Lateral de Filtros -->
       <div class="lg:w-80 flex-shrink-0">
         <PropertyFilters @filter-change="handleFilterChange" />
       </div>
 
-      <!-- Property Grid -->
+      <!-- Cuadrícula de Propiedades -->
       <div class="flex-1">
         <div v-if="filteredProperties.length === 0" class="text-center py-12">
           <span class="material-symbols-outlined text-6xl text-[#4c9a66] dark:text-[#a0ccb0] mb-4">search_off</span>
@@ -46,7 +46,7 @@
               </div>
             </div>
             <div class="p-5">
-              <!-- CO2 Comparison Badge -->
+              <!-- Distintivo de Comparación de CO2 -->
               <div class="mb-3 bg-[#059669]/10 border border-[#059669]/20 rounded-lg p-3">
                 <div class="flex items-center gap-2 text-[#059669] dark:text-[#10b981]">
                   <span class="material-symbols-outlined text-lg">eco</span>
@@ -78,7 +78,7 @@
                 :to="`/propiedad/${property.id}`" 
                 class="w-full bg-primary hover:bg-primary/90 text-[#0d1b12] font-bold py-3 rounded-lg transition-all flex items-center justify-center gap-2"
               >
-                Ver Listado <span class="material-symbols-outlined">arrow_forward</span>
+                Ver Vivienda <span class="material-symbols-outlined">arrow_forward</span>
               </router-link>
             </div>
           </div>
@@ -107,6 +107,9 @@ const handleFilterChange = (newFilters: typeof filters.value) => {
 
 const filteredProperties = computed(() => {
   return properties.value.filter(property => {
+    // Excluir propiedades ocultas
+    if (property.hidden) return false
+    
     const certMatch = filters.value.certifications.length === 0 || 
                      filters.value.certifications.includes(property.energyCertification)
     

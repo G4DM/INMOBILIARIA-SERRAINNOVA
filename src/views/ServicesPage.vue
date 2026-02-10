@@ -1,6 +1,6 @@
 <template>
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <!-- Header -->
+    <!-- Encabezado -->
     <div class="text-center mb-16">
       <h1 class="text-3xl md:text-5xl font-black mb-4">Nuestros Servicios</h1>
       <p class="text-lg text-[#4c9a66] dark:text-[#a0ccb0] max-w-3xl mx-auto">
@@ -8,9 +8,9 @@
       </p>
     </div>
 
-    <!-- Services Grid -->
+    <!-- Cuadrícula de Servicios -->
     <div class="space-y-20">
-      <!-- Service 1: Energy Audits -->
+      <!-- Servicio 1: Auditorías Energéticas -->
       <section class="grid md:grid-cols-2 gap-8 items-center">
         <div class="order-2 md:order-1">
           <div class="flex items-center gap-3 mb-4">
@@ -40,9 +40,6 @@
               <span class="text-[#4c9a66] dark:text-[#a0ccb0]">Certificación energética oficial</span>
             </li>
           </ul>
-          <button class="bg-primary hover:bg-primary/90 text-[#0d1b12] font-bold px-6 py-3 rounded-lg transition-all">
-            Solicitar auditoría
-          </button>
         </div>
         <div class="order-1 md:order-2 rounded-xl overflow-hidden h-80">
           <img 
@@ -53,7 +50,7 @@
         </div>
       </section>
 
-      <!-- Service 2: Subsidy Management -->
+      <!-- Servicio 2: Gestión de Subvenciones -->
       <section class="grid md:grid-cols-2 gap-8 items-center">
         <div class="rounded-xl overflow-hidden h-80">
           <img 
@@ -93,13 +90,10 @@
               </li>
             </ul>
           </div>
-          <button class="bg-primary hover:bg-primary/90 text-[#0d1b12] font-bold px-6 py-3 rounded-lg transition-all">
-            Consultar ayudas
-          </button>
         </div>
       </section>
 
-      <!-- Service 3: Rehabilitation Projects -->
+      <!-- Servicio 3: Proyectos de Rehabilitación -->
       <section class="grid md:grid-cols-2 gap-8 items-center">
         <div class="order-2 md:order-1">
           <div class="flex items-center gap-3 mb-4">
@@ -112,7 +106,7 @@
             mejoras significativas en eficiencia energética y confort.
           </p>
           
-          <!-- Before/After Example -->
+          <!-- Ejemplo Antes/Después -->
           <div class="bg-white dark:bg-[#152a1c] border border-[#cfe7d7] dark:border-[#2a4a35] rounded-xl p-6 mb-6">
             <h3 class="font-bold mb-4">Caso de éxito: Vivienda en Valencia</h3>
             <div class="grid grid-cols-2 gap-4 mb-4">
@@ -145,10 +139,7 @@
               </p>
             </div>
           </div>
-          
-          <button class="bg-primary hover:bg-primary/90 text-[#0d1b12] font-bold px-6 py-3 rounded-lg transition-all">
-            Ver más proyectos
-          </button>
+
         </div>
         <div class="order-1 md:order-2 rounded-xl overflow-hidden h-80">
           <img 
@@ -160,7 +151,7 @@
       </section>
     </div>
 
-    <!-- CTA Section -->
+    <!-- Sección de Llamada a la Acción -->
     <section class="mt-20 bg-primary rounded-2xl p-12 text-center">
       <h2 class="text-3xl font-black text-[#0d1b12] mb-4">¿Listo para transformar tu hogar?</h2>
       <p class="text-[#0d1b12] mb-8 max-w-2xl mx-auto">
@@ -177,5 +168,5 @@
   </main>
 </template>
 
-<script setup lang="ts">
+<script>
 </script>

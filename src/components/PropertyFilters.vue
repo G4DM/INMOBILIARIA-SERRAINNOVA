@@ -10,7 +10,7 @@
       </button>
     </div>
 
-    <!-- Energy Certification Filter -->
+    <!-- Filtro de Certificación Energética -->
     <div class="mb-6 pb-6 border-b border-[#e7f3eb] dark:border-[#1a3022]">
       <h4 class="font-bold mb-3 text-sm uppercase tracking-wide text-[#4c9a66] dark:text-[#a0ccb0]">
         Certificación Energética
@@ -32,7 +32,7 @@
       </div>
     </div>
 
-    <!-- Energy Type Filter -->
+    <!-- Filtro de Tipo de Energía -->
     <div class="mb-6 pb-6 border-b border-[#e7f3eb] dark:border-[#1a3022]">
       <h4 class="font-bold mb-3 text-sm uppercase tracking-wide text-[#4c9a66] dark:text-[#a0ccb0]">
         Tipo de Energía
@@ -54,7 +54,7 @@
       </div>
     </div>
 
-    <!-- Construction Materials Filter -->
+    <!-- Filtro de Materiales de Construcción -->
     <div>
       <h4 class="font-bold mb-3 text-sm uppercase tracking-wide text-[#4c9a66] dark:text-[#a0ccb0]">
         Materiales de Construcción
