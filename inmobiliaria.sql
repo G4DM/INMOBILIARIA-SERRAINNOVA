@@ -1,4 +1,4 @@
--- 1. Crear la base de datos (opcional, si no existe)
+-- 1. Crear la base de datos
 CREATE DATABASE IF NOT EXISTS inmobiliaria_db;
 USE inmobiliaria_db;
 
@@ -13,20 +13,28 @@ CREATE TABLE USUARIO (
     rol VARCHAR(50) 
 );
 
--- 3. Tabla PROPIEDAD
+-- 3. Tabla PROPIEDAD (Actualizada con los nuevos atributos)
 CREATE TABLE PROPIEDAD (
-    id_prop INT AUTO_INCREMENT PRIMARY KEY,
-    tipo VARCHAR(50) NOT NULL, 
-    m2 DECIMAL(10, 2),
-    estado VARCHAR(50), 
-    n_hab INT, 
-    n_banos INT, 
-    precio DECIMAL(15, 2),
-    ciudad VARCHAR(100),
-    direcc VARCHAR(255),
-    garaje BOOLEAN DEFAULT FALSE,   
-    ascensor BOOLEAN DEFAULT FALSE, 
-    f_pub DATE 
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    title VARCHAR(255) NOT NULL,
+    price DECIMAL(15, 2), -- Guardamos precio como número para poder ordenar/filtrar
+    location VARCHAR(255),
+    bedrooms INT,
+    bathrooms INT,
+    area DECIMAL(10, 2),
+    image VARCHAR(512), -- URL de la imagen principal
+    energyCertification VARCHAR(10),
+    -- Los siguientes campos son Arrays o Objetos, usamos JSON
+    energyType JSON,            -- ["Solar", "Aerotermia"]
+    materials JSON,             -- ["Madera", "Hormigón..."]
+    
+    co2Emissions DECIMAL(10, 2),
+    co2Savings DECIMAL(10, 2),
+    description TEXT,
+    
+    features JSON,              -- ["Paneles Solares", ...]
+    sustainabilityChecklist JSON, -- El objeto complejo con booleanos
+    certifications JSON         -- ["Passivhaus", "LEED Gold"]
 );
 
 -- 4. Tabla OPERACION
@@ -38,7 +46,7 @@ CREATE TABLE OPERACION (
     CONSTRAINT fk_operacion_usuario FOREIGN KEY (id_usr) 
         REFERENCES USUARIO(id_usr) ON DELETE CASCADE,
     CONSTRAINT fk_operacion_propiedad FOREIGN KEY (id_prop) 
-        REFERENCES PROPIEDAD(id_prop) ON DELETE CASCADE
+        REFERENCES PROPIEDAD(id) ON DELETE CASCADE
 );
 
 -- 5. Tabla ARTICULO
@@ -53,7 +61,7 @@ CREATE TABLE ARTICULO (
         REFERENCES USUARIO(id_usr) ON DELETE SET NULL
 );
 
--- 6. Tabla IMAGEN
+-- 6. Tabla IMAGEN (Galería adicional)
 CREATE TABLE IMAGEN (
     id_img INT AUTO_INCREMENT PRIMARY KEY,
     ruta VARCHAR(255) NOT NULL, 
@@ -62,9 +70,7 @@ CREATE TABLE IMAGEN (
     id_art INT,  
     
     CONSTRAINT fk_imagen_propiedad FOREIGN KEY (id_prop) 
-        REFERENCES PROPIEDAD(id_prop) ON DELETE CASCADE,
+        REFERENCES PROPIEDAD(id) ON DELETE CASCADE,
     CONSTRAINT fk_imagen_articulo FOREIGN KEY (id_art) 
-        REFERENCES ARTICULO(id_art) ON DELETE CASCADE,
-
-   
+        REFERENCES ARTICULO(id_art) ON DELETE CASCADE
 );
