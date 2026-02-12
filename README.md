@@ -1,141 +1,133 @@
 # SERRAINNOVA - Plataforma Inmobiliaria Sostenible
 
-Plataforma web inmobiliaria desarrollada como **proyecto académico de gran envergadura**, enfocada en la gestión de propiedades sostenibles y eficiencia energética, utilizando **Laravel**, **Vue.js** y **TailwindCSS**.
+> **Proyecto Académico Grupal - Desarrollo de Aplicaciones Web (DAW) | PIIE**
+> Este proyecto ha sido desarrollado como parte del módulo de Proyecto de Fin de Grado, integrando tecnologías modernas de desarrollo web en un entorno profesional.
 
-<br>
+---
 
-## 📌 Descripción del Proyecto
+## 🌟 Visión del Proyecto
+SERRAINNOVA es una solución digital avanzada para el sector inmobiliario, centrada exclusivamente en la **sostenibilidad** y la **eficiencia energética**. La plataforma no solo permite la compra/venta de propiedades, sino que actúa como una herramienta de concienciación y cálculo de impacto ambiental para el ciudadano moderno.
 
-SERRAINNOVA es una plataforma orientada a ofrecer **soluciones inmobiliarias sostenibles**, donde los usuarios pueden:
+---
 
-- Consultar propiedades disponibles para compra o alquiler.
-- Acceder a información sobre eficiencia energética y ahorro de CO2.
-- Calcular el impacto ambiental de su vivienda.
-- Gestionar propiedades y servicios desde un backoffice administrativo.
+## 🛠️ Stack Tecnológico
 
-El proyecto combina un **frontend moderno y responsive** con TailwindCSS y Vue.js, junto con un **backend robusto** basado en Laravel, ofreciendo un sistema escalable y profesional.
+### Backend (El Motor)
+- **Laravel 12 (PHP 8.2+):** Elegido por su robustez, sistema de rutas elegante y su potente ORM.
+- **Eloquent ORM:** Para una gestión de datos orientada a objetos, facilitando la escalabilidad.
+- **Laravel Sanctum:** Implementado para una autenticación ligera y segura mediante tokens API.
+- **SQLite/MySQL:** Almacenamiento persistente con migraciones versionadas.
+- **Middleware Personalizado:** Control de acceso granular basado en roles (`moderator` vs `user`).
 
-<br>
+### Frontend (La Interfaz)
+- **Vue.js 3 (Composition API):** Para una interfaz reactiva, rápida y modular.
+- **Vite:** Como bundler de nueva generación para una experiencia de desarrollo instantánea.
+- **Tailwind CSS:** Diseño visual premium, responsive y con sistema de Dark Mode nativo.
+- **Fetch API:** Comunicación asíncrona nativa con el backend, evitando dependencias pesadas.
+- **Material Symbols:** Iconografía moderna y minimalista.
 
-## 🛠 Tecnologías Utilizadas
+---
 
-- **Frontend:**
-  - Vue.js (composición y componentes)
-  - TailwindCSS (diseño responsive y utilitario)
-  - Material Symbols Outlined (iconografía)
-- **Backend:**
-  - Laravel
-  - Eloquent ORM para gestión de base de datos
-  - Autenticación y control de usuarios
-- **Base de Datos:**
-  - MySQL / MariaDB
-- **Otras:**
-  - Git para control de versiones
-  - Vite como bundler
+## 🏗️ Arquitectura Desacoplada (Decoupled)
+El proyecto se basa en una arquitectura de **SPA (Single Page Application)** separada del servidor. Esto permite:
+1. **Escalabilidad Independiente**: El frontend y el backend pueden evolucionar y desplegarse por separado.
+2. **Consumo de API**: El backend puede servir datos no solo a la web, sino a futuras aplicaciones móviles.
+3. **Seguridad Estricta**: La comunicación se realiza mediante cabeceras `Authorization: Bearer <token>`, protegiendo cada endpoint.
 
-<br>
+---
 
-## 🏗 Estructura del Proyecto
-
+## 📁 Estructura del Repositorio
 ```text
 /serrainnova
-├─ app/                # Lógica principal de Laravel
-├─ bootstrap/          # Configuración inicial
-├─ config/             # Configuraciones del proyecto
-├─ database/           # Migraciones y seeders
-├─ public/             # Archivos públicos (CSS, JS, imágenes)
-├─ resources/
-│   ├─ css/            # TailwindCSS
-│   ├─ js/             # Vue.js components y scripts
-│   └─ views/          # Blade templates
-├─ routes/             # Definición de rutas web y API
-└─ tests/              # Pruebas unitarias y de integración
+└── main/
+    ├── backend/           # Proyecto Laravel (API REST)
+    │   ├── app/           # Modelos, Controladores y Middleware
+    │   ├── database/      # Migraciones y Seeders (Datos iniciales)
+    │   ├── routes/        # Definición de endpoints API
+    │   └── .env           # Configuración del servidor
+    └── frontend/          # Proyecto Vue.js (SPA)
+        ├── src/
+        │   ├── views/     # Páginas (Públicas y Admin)
+        │   ├── components/ # Elementos reutilizables
+        │   ├── store/     # Gestión de estado (userStore)
+        │   └── router/    # Navegación SPA
+        └── tailwind.config.js
 ```
 
-<br>
+---
 
-## 🚀 Instalación y Configuración
+## 🚀 Instalación y Despliegue Local
 
+### 1. Requisitos Previos
+- PHP >= 8.2
+- Composer
+- Node.js & npm
+- servidor web (servido por Artisan)
+
+### 2. Configuración del Backend
 ```bash
-# Clonar el repositorio
-git clone https://github.com/tu-usuario/serrainnova.git
-cd serrainnova
-
-# Instalar dependencias de Laravel
+cd main/backend
 composer install
-
-# Instalar dependencias de Node.js
-npm install
-
-# Configurar archivo .env
 cp .env.example .env
 php artisan key:generate
 
-# Migrar base de datos
-php artisan migrate
-
-# Iniciar servidor de desarrollo
+# Configurar base de datos (por defecto SQLite)
+# Si usas SQLite, crea el archivo: touch database/database.sqlite
+php artisan migrate:fresh --seed  # Instala tablas y datos de prueba
 php artisan serve
+```
+*El servidor correrá en [http://localhost:8000](http://localhost:8000)*
 
-# Iniciar frontend (Vite)
+### 3. Configuración del Frontend
+```bash
+cd main/frontend
+npm install
 npm run dev
 ```
+*La aplicación estará disponible en [http://localhost:5173](http://localhost:5173)*
 
-<br>
+---
 
-## ⚙ Funcionalidades Principales
+## ⚙️ Funcionalidades Implementadas
 
-1. **Gestión de Propiedades**
-   - CRUD completo de inmuebles.
-   - Subida de imágenes y certificados PDF.
-2. **Impacto Energético**
-   - Cálculo de ahorro de CO2.
-   - Estimación de ahorro económico anual.
-3. **Servicios Sostenibles**
-   - Auditorías energéticas.
-   - Valoraciones de propiedades según eficiencia.
-   - Asesoría hipotecaria verde.
-4. **Autenticación y Roles**
-   - Usuarios, administradores y agentes inmobiliarios.
-5. **Diseño Responsivo**
-   - Adaptación a dispositivos móviles, tablets y escritorio.
-   - Sistema Light/Dark Mode.
+### Área Pública
+- **Explorador Sostenible**: Filtrado avanzado por certificación energética (A-G).
+- **Ficha Técnica de Propiedad**: Visualización de materiales ecológicos y sistemas de energía renovable.
+- **Calculadora CO2**: Herramienta interactiva para medir el ahorro ambiental.
+- **Blog de Estilos de Vida**: Artículos sobre sostenibilidad y agenda 2030.
 
-<br>
+### Área Administrativa (Backoffice)
+Acceso exclusivo para usuarios con rol `moderator`.
+- **Gestión de Propiedades**: CRUD completo con validación de tipos numéricos y control de visibilidad (`hidden`).
+- **Administración de Blogs**: Editor con gestión de fechas ISO y metadatos.
+- **Gestión de Usuarios**: Control de roles y monitorización de registros.
+- **Dashboard de Estadísticas**: Resumen en tiempo real del inventario y la comunidad.
 
-## 🎨 Guía de Estilos (Tailwind + Figma)
+---
 
-- **Paleta de colores:**
-  - `primary`: #13ec5b
-  - `background-light`: #f6f8f6
-  - `background-dark`: #102216
-  - `textdark`: #0d1b12
-  - `success`: #078829
-- **Tipografía:** Inter, con pesos de 400 a 900
-- **Border Radius:** sm (0.25rem), lg (0.5rem), xl (0.75rem), full (9999px)
-- **Componentes base:** Botones, tarjetas, formularios, navbar, footer
+## 🔐 Credenciales de Acceso (Entorno de Desarrollo)
+Una vez ejecutado el seeder (`php artisan db:seed`), puedes usar:
 
-<br>
+| Perfil | Email | Password |
+| :--- | :--- | :--- |
+| **Administrador** | maria.garcia@email.com | `password123` |
+| **Usuario Estándar** | juan.martinez@email.com | `password123` |
 
-## 📂 Plan Futuro
+---
 
-- Integración completa de **backoffice administrativo**.
-- Sistema de autenticación avanzado con roles.
-- Dashboard con estadísticas de impacto energético.
-- Módulo de notificaciones y correo electrónico.
-- Versiones multi-idioma (ES / EN / FR).
-- Preparación para **producción y deployment**.
+## � Documentación Adicional
+Para más detalles técnicos, consulta los archivos internos:
+- [Proceso de Conexión](file:///c:/dev/school/main/PROCESO_CONEXION.md): Detalle de la integración API.
+- [Explicación del Proyecto](file:///c:/dev/school/main/EXPLICACION_PROYECTO.md): Filosofía y arquitectura.
 
-<br>
+---
 
-## 📝 Licencia
+## � Equipo de Desarrollo (DAW)
+Proyecto realizado por el grupo de alumnos de **Ciclo Formativo de Grado Superior en Desarrollo de Aplicaciones Web**.
 
-Este proyecto se distribuye bajo la licencia **MIT**.
+- **Centro:** [Nombre del Centro]
+- **Asignatura:** Proyecto / PIIE
+- **Fecha:** Febrero 2026
 
-<br>
-
-## 📞 Contacto
-
-- Email: info@serrainova.es  
-- Teléfono: +34 960 000 000  
-- Dirección: Partida La Banderilla 44G, Valencia, España
+---
+© 2026 SERRAINNOVA - Hacia un mercado inmobiliario consciente.
