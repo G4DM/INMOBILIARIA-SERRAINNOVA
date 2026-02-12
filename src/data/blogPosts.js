@@ -1,5 +1,3 @@
-// Datos de artículos del blog para la aplicación
-
 export const blogPosts = [
 	{
 		id: 1,

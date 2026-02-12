@@ -1,11 +1,12 @@
 <template>
-  <main class="min-h-screen bg-gradient-to-br from-[#f6f8f6] to-[#e7f3eb] dark:from-[#08150d] dark:to-[#0d1b12] py-12 px-6 lg:px-40">
+  <main
+    class="min-h-screen bg-gradient-to-br from-[#f6f8f6] to-[#e7f3eb] dark:from-[#08150d] dark:to-[#0d1b12] py-12 px-6 lg:px-40">
     <div class="max-w-[1400px] mx-auto">
       <div class="mb-8">
         <h1 class="text-4xl font-black mb-2">Panel de Administración</h1>
         <p class="text-lg opacity-70">Gestión de propiedades, blogs y usuarios</p>
       </div>
-      
+
       <!-- Tarjetas de Estadísticas -->
       <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
         <div class="bg-white dark:bg-[#152a1c] p-6 rounded-xl border border-[#cfe7d7] dark:border-[#2a4a35]">
@@ -33,12 +34,11 @@
       <!-- Botones de Navegación -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- Gestión de Propiedades -->
-        <router-link 
-          to="/admin/propiedades"
-          class="bg-white dark:bg-[#152a1c] p-8 rounded-xl border-2 border-[#cfe7d7] dark:border-[#2a4a35] hover:border-primary dark:hover:border-primary transition-all group"
-        >
+        <router-link to="/admin/propiedades"
+          class="bg-white dark:bg-[#152a1c] p-8 rounded-xl border-2 border-[#cfe7d7] dark:border-[#2a4a35] hover:border-primary dark:hover:border-primary transition-all group">
           <div class="flex flex-col items-center text-center">
-            <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-all">
+            <div
+              class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-all">
               <span class="material-symbols-outlined text-primary text-5xl">home_work</span>
             </div>
             <h3 class="text-2xl font-bold mb-2">Gestión de Propiedades</h3>
@@ -51,12 +51,11 @@
         </router-link>
 
         <!-- Gestión de Blogs -->
-        <router-link 
-          to="/admin/blogs"
-          class="bg-white dark:bg-[#152a1c] p-8 rounded-xl border-2 border-[#cfe7d7] dark:border-[#2a4a35] hover:border-primary dark:hover:border-primary transition-all group"
-        >
+        <router-link to="/admin/blogs"
+          class="bg-white dark:bg-[#152a1c] p-8 rounded-xl border-2 border-[#cfe7d7] dark:border-[#2a4a35] hover:border-primary dark:hover:border-primary transition-all group">
           <div class="flex flex-col items-center text-center">
-            <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-all">
+            <div
+              class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-all">
               <span class="material-symbols-outlined text-primary text-5xl">article</span>
             </div>
             <h3 class="text-2xl font-bold mb-2">Gestión de Blogs</h3>
@@ -69,12 +68,11 @@
         </router-link>
 
         <!-- Gestión de Usuarios -->
-        <router-link 
-          to="/admin/usuarios"
-          class="bg-white dark:bg-[#152a1c] p-8 rounded-xl border-2 border-[#cfe7d7] dark:border-[#2a4a35] hover:border-primary dark:hover:border-primary transition-all group"
-        >
+        <router-link to="/admin/usuarios"
+          class="bg-white dark:bg-[#152a1c] p-8 rounded-xl border-2 border-[#cfe7d7] dark:border-[#2a4a35] hover:border-primary dark:hover:border-primary transition-all group">
           <div class="flex flex-col items-center text-center">
-            <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-all">
+            <div
+              class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-all">
               <span class="material-symbols-outlined text-primary text-5xl">manage_accounts</span>
             </div>
             <h3 class="text-2xl font-bold mb-2">Gestión de Usuarios</h3>
@@ -91,18 +89,51 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
-import { properties as importedProperties } from '../data/properties'
-import { users as importedUsers } from '../data/users'
-import { blogPosts as importedBlogPosts } from '../data/blogPosts'
+  import { ref, computed, onMounted } from 'vue'
+  import { userStore } from '../store/userStore'
 
-// Estado reactivo para estadísticas
-const properties = ref([...importedProperties])
-const users = ref([...importedUsers])
-const blogPosts = ref([...importedBlogPosts])
+  // Estado reactivo para estadísticas
+  const properties = ref([])
+  const users = ref([])
+  const blogPosts = ref([])
+  const loading = ref(true)
 
-// Estadísticas computadas
-const visibleProperties = computed(() => 
-  properties.value.filter(p => !p.hidden).length
-)
+  const fetchData = async () => {
+    try {
+      loading.value = true
+
+      // Fetch Público
+      const [propRes, blogRes] = await Promise.all([
+        fetch('http://localhost:8000/api/properties'),
+        fetch('http://localhost:8000/api/articles')
+      ])
+
+      properties.value = await propRes.json()
+      blogPosts.value = await blogRes.json()
+
+      // Fetch Protegido (Usuarios)
+      const userRes = await fetch('http://localhost:8000/api/users', {
+        headers: {
+          'Authorization': `Bearer ${userStore.token}`,
+          'Accept': 'application/json'
+        }
+      })
+
+      if (userRes.ok) {
+        users.value = await userRes.json()
+      }
+
+    } catch (err) {
+      console.error('Error fetching dashboard data:', err)
+    } finally {
+      loading.value = false
+    }
+  }
+
+  onMounted(fetchData)
+
+  // Estadísticas computadas
+  const visibleProperties = computed(() =>
+    properties.value.filter(p => !p.hidden).length
+  )
 </script>

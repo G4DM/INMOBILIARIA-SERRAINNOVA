@@ -1,5 +1,3 @@
-// Datos compartidos de propiedades para la aplicación
-
 export const properties = [
 	{
 		id: 1,

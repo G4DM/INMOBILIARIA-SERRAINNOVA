@@ -1,5 +1,3 @@
-// Datos de usuarios simulados para el panel de administrador
-
 export const users = [
 	{
 		id: 1,

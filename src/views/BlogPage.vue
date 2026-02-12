@@ -10,37 +10,25 @@
 
     <!-- Filtros de Categoría -->
     <div class="flex flex-wrap gap-3 mb-8">
-      <button 
-        @click="selectedCategory = null"
+      <button @click="selectedCategory = null"
         :class="selectedCategory === null ? 'bg-primary text-[#0d1b12]' : 'bg-white dark:bg-[#152a1c] border border-[#cfe7d7] dark:border-[#2a4a35]'"
-        class="px-4 py-2 rounded-lg font-medium transition-all hover:shadow-md"
-      >
+        class="px-4 py-2 rounded-lg font-medium transition-all hover:shadow-md">
         Todos
       </button>
-      <button 
-        v-for="category in categories" 
-        :key="category"
-        @click="selectedCategory = category"
+      <button v-for="category in categories" :key="category" @click="selectedCategory = category"
         :class="selectedCategory === category ? 'bg-primary text-[#0d1b12]' : 'bg-white dark:bg-[#152a1c] border border-[#cfe7d7] dark:border-[#2a4a35]'"
-        class="px-4 py-2 rounded-lg font-medium transition-all hover:shadow-md"
-      >
+        class="px-4 py-2 rounded-lg font-medium transition-all hover:shadow-md">
         {{ category }}
       </button>
     </div>
 
     <!-- Cuadrícula de Artículos del Blog -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <article 
-        v-for="post in filteredPosts" 
-        :key="post.id"
-        class="group bg-white dark:bg-[#152a1c] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-[#cfe7d7] dark:border-[#2a4a35]"
-      >
+      <article v-for="post in filteredPosts" :key="post.id"
+        class="group bg-white dark:bg-[#152a1c] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-[#cfe7d7] dark:border-[#2a4a35]">
         <div class="relative h-48 overflow-hidden">
-          <img 
-            :src="post.image" 
-            :alt="post.title"
-            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-          />
+          <img :src="post.image" :alt="post.title"
+            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
           <div class="absolute top-4 left-4">
             <span class="bg-primary text-[#0d1b12] px-3 py-1 rounded-lg text-xs font-bold">
               {{ post.category }}
@@ -58,10 +46,8 @@
           <p class="text-[#4c9a66] dark:text-[#a0ccb0] mb-4 line-clamp-3">
             {{ post.excerpt }}
           </p>
-          <router-link 
-            :to="`/blog/${post.id}`"
-            class="inline-flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all"
-          >
+          <router-link :to="`/blog/${post.id}`"
+            class="inline-flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all">
             Leer más <span class="material-symbols-outlined text-lg">arrow_forward</span>
           </router-link>
         </div>
@@ -71,20 +57,36 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
-import { blogPosts as importedBlogPosts, blogCategories } from '../data/blogPosts'
+  import { ref, computed, onMounted } from 'vue'
 
-const categories = blogCategories
-const selectedCategory = ref(null)
+  const categories = ['Estilos de vida', 'Agenda 2030', 'Subvenciones']
+  const selectedCategory = ref(null)
+  const posts = ref([])
+  const loading = ref(true)
+  const error = ref(null)
 
-const posts = ref([...importedBlogPosts])
+  const fetchPosts = async () => {
+    try {
+      loading.value = true
+      const response = await fetch('http://localhost:8000/api/articles')
+      if (!response.ok) throw new Error('Error al cargar artículos')
+      posts.value = await response.json()
+    } catch (err) {
+      error.value = err.message
+      console.error(err)
+    } finally {
+      loading.value = false
+    }
+  }
 
-const filteredPosts = computed(() => {
-  // Filtrar blogs ocultos y por categoría
-  return posts.value.filter(post => {
-    if (post.hidden) return false
-    if (selectedCategory.value === null) return true
-    return post.category === selectedCategory.value
+  onMounted(fetchPosts)
+
+  const filteredPosts = computed(() => {
+    // Filtrar blogs ocultos y por categoría
+    return posts.value.filter(post => {
+      if (post.hidden) return false
+      if (selectedCategory.value === null) return true
+      return post.category === selectedCategory.value
+    })
   })
-})
 </script>

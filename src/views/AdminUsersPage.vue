@@ -1,5 +1,6 @@
 <template>
-  <main class="min-h-screen bg-gradient-to-br from-[#f6f8f6] to-[#e7f3eb] dark:from-[#08150d] dark:to-[#0d1b12] py-12 px-6 lg:px-40">
+  <main
+    class="min-h-screen bg-gradient-to-br from-[#f6f8f6] to-[#e7f3eb] dark:from-[#08150d] dark:to-[#0d1b12] py-12 px-6 lg:px-40">
     <div class="max-w-[1400px] mx-auto">
       <!-- Header -->
       <div class="mb-8">
@@ -13,31 +14,23 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <label class="block text-sm font-bold mb-2">Buscar por nombre</label>
-            <input 
-              v-model="searchName"
-              type="text"
+            <input v-model="searchName" type="text"
               class="w-full px-4 py-3 rounded-lg border border-[#cfe7d7] dark:border-[#2a4a35] bg-[#f6f8f6] dark:bg-[#102216] focus:ring-2 focus:ring-primary"
-              placeholder="Ej: María..."
-            />
+              placeholder="Ej: María..." />
           </div>
           <div>
             <label class="block text-sm font-bold mb-2">Buscar por email</label>
-            <input 
-              v-model="searchEmail"
-              type="text"
+            <input v-model="searchEmail" type="text"
               class="w-full px-4 py-3 rounded-lg border border-[#cfe7d7] dark:border-[#2a4a35] bg-[#f6f8f6] dark:bg-[#102216] focus:ring-2 focus:ring-primary"
-              placeholder="Ej: usuario@email.com..."
-            />
+              placeholder="Ej: usuario@email.com..." />
           </div>
           <div>
             <label class="block text-sm font-bold mb-2">Rol</label>
-            <select 
-              v-model="searchRole"
-              class="w-full px-4 py-3 rounded-lg border border-[#cfe7d7] dark:border-[#2a4a35] bg-[#f6f8f6] dark:bg-[#102216] focus:ring-2 focus:ring-primary"
-            >
+            <select v-model="searchRole"
+              class="w-full px-4 py-3 rounded-lg border border-[#cfe7d7] dark:border-[#2a4a35] bg-[#f6f8f6] dark:bg-[#102216] focus:ring-2 focus:ring-primary">
               <option value="">Todos</option>
-              <option value="Admin">Admin</option>
-              <option value="Usuario">Usuario</option>
+              <option value="moderator">Administrador</option>
+              <option value="user">Usuario</option>
             </select>
           </div>
         </div>
@@ -58,38 +51,28 @@
               </tr>
             </thead>
             <tbody class="divide-y divide-[#e7f3eb] dark:divide-[#1a3022]">
-              <tr 
-                v-for="user in filteredUsers" 
-                :key="user.id"
-                class="hover:bg-[#f6f8f6] dark:hover:bg-[#102216] transition-colors"
-              >
+              <tr v-for="user in filteredUsers" :key="user.id"
+                class="hover:bg-[#f6f8f6] dark:hover:bg-[#102216] transition-colors">
                 <td class="px-6 py-4 font-mono text-sm">{{ user.id }}</td>
                 <td class="px-6 py-4 font-medium">{{ user.name }}</td>
                 <td class="px-6 py-4 text-[#4c9a66] dark:text-[#a0ccb0]">{{ user.email }}</td>
                 <td class="px-6 py-4">
-                  <span 
-                    class="px-2 py-1 rounded text-xs font-medium"
-                    :class="user.role === 'Admin' 
-                      ? 'bg-primary/20 text-primary' 
-                      : 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'"
-                  >
-                    {{ user.role }}
+                  <span class="px-2 py-1 rounded text-xs font-medium" :class="user.role === 'moderator'
+                    ? 'bg-primary/20 text-primary'
+                    : 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'">
+                    {{ user.role === 'moderator' ? 'Administrador' : 'Usuario' }}
                   </span>
                 </td>
                 <td class="px-6 py-4">{{ user.registrationDate }}</td>
                 <td class="px-6 py-4">
                   <div class="flex gap-2">
-                    <button
-                      @click="editUser(user)"
-                      class="px-3 py-1.5 bg-blue-100 hover:bg-blue-200 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 rounded-lg font-medium transition-all text-sm flex items-center gap-1"
-                    >
+                    <button @click="editUser(user)"
+                      class="px-3 py-1.5 bg-blue-100 hover:bg-blue-200 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 rounded-lg font-medium transition-all text-sm flex items-center gap-1">
                       <span class="material-symbols-outlined text-sm">edit</span>
                       Editar
                     </button>
-                    <button
-                      @click="confirmDeleteUser(user)"
-                      class="px-3 py-1.5 bg-red-100 hover:bg-red-200 text-red-700 dark:bg-red-900/30 dark:text-red-400 rounded-lg font-medium transition-all text-sm flex items-center gap-1"
-                    >
+                    <button @click="confirmDeleteUser(user)"
+                      class="px-3 py-1.5 bg-red-100 hover:bg-red-200 text-red-700 dark:bg-red-900/30 dark:text-red-400 rounded-lg font-medium transition-all text-sm flex items-center gap-1">
                       <span class="material-symbols-outlined text-sm">delete</span>
                       Eliminar
                     </button>
@@ -103,52 +86,39 @@
     </div>
 
     <!-- Modal de Edición de Usuario -->
-    <div 
-      v-if="showEditModal"
+    <div v-if="showEditModal"
       class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
-      @click.self="closeEditModal"
-    >
-      <div class="bg-white dark:bg-[#152a1c] rounded-xl p-8 max-w-md w-full border border-[#cfe7d7] dark:border-[#2a4a35]">
+      @click.self="closeEditModal">
+      <div
+        class="bg-white dark:bg-[#152a1c] rounded-xl p-8 max-w-md w-full border border-[#cfe7d7] dark:border-[#2a4a35]">
         <h3 class="text-2xl font-bold mb-6">Editar Usuario</h3>
         <div class="space-y-4">
           <div>
             <label class="block text-sm font-bold mb-2">Nombre</label>
-            <input 
-              v-model="editingUser.name"
-              type="text"
-              class="w-full px-4 py-3 rounded-lg border border-[#cfe7d7] dark:border-[#2a4a35] bg-[#f6f8f6] dark:bg-[#102216] focus:ring-2 focus:ring-primary"
-            />
+            <input v-model="editingUser.name" type="text"
+              class="w-full px-4 py-3 rounded-lg border border-[#cfe7d7] dark:border-[#2a4a35] bg-[#f6f8f6] dark:bg-[#102216] focus:ring-2 focus:ring-primary" />
           </div>
           <div>
             <label class="block text-sm font-bold mb-2">Email</label>
-            <input 
-              v-model="editingUser.email"
-              type="email"
-              class="w-full px-4 py-3 rounded-lg border border-[#cfe7d7] dark:border-[#2a4a35] bg-[#f6f8f6] dark:bg-[#102216] focus:ring-2 focus:ring-primary"
-            />
+            <input v-model="editingUser.email" type="email"
+              class="w-full px-4 py-3 rounded-lg border border-[#cfe7d7] dark:border-[#2a4a35] bg-[#f6f8f6] dark:bg-[#102216] focus:ring-2 focus:ring-primary" />
           </div>
           <div>
             <label class="block text-sm font-bold mb-2">Rol</label>
-            <select 
-              v-model="editingUser.role"
-              class="w-full px-4 py-3 rounded-lg border border-[#cfe7d7] dark:border-[#2a4a35] bg-[#f6f8f6] dark:bg-[#102216] focus:ring-2 focus:ring-primary"
-            >
-              <option value="Usuario">Usuario</option>
-              <option value="Admin">Admin</option>
+            <select v-model="editingUser.role"
+              class="w-full px-4 py-3 rounded-lg border border-[#cfe7d7] dark:border-[#2a4a35] bg-[#f6f8f6] dark:bg-[#102216] focus:ring-2 focus:ring-primary">
+              <option value="user">Usuario</option>
+              <option value="moderator">Administrador</option>
             </select>
           </div>
         </div>
         <div class="flex gap-3 mt-6">
-          <button
-            @click="saveUser"
-            class="flex-1 bg-primary hover:bg-primary/90 text-[#0d1b12] font-bold py-3 rounded-lg transition-all"
-          >
+          <button @click="saveUser"
+            class="flex-1 bg-primary hover:bg-primary/90 text-[#0d1b12] font-bold py-3 rounded-lg transition-all">
             Guardar Cambios
           </button>
-          <button
-            @click="closeEditModal"
-            class="flex-1 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 font-bold py-3 rounded-lg transition-all"
-          >
+          <button @click="closeEditModal"
+            class="flex-1 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 font-bold py-3 rounded-lg transition-all">
             Cancelar
           </button>
         </div>
@@ -156,25 +126,21 @@
     </div>
 
     <!-- Modal de Confirmación de Eliminación -->
-    <div 
-      v-if="showDeleteModal"
+    <div v-if="showDeleteModal"
       class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
-      @click.self="closeDeleteModal"
-    >
-      <div class="bg-white dark:bg-[#152a1c] rounded-xl p-8 max-w-md w-full border border-[#cfe7d7] dark:border-[#2a4a35]">
+      @click.self="closeDeleteModal">
+      <div
+        class="bg-white dark:bg-[#152a1c] rounded-xl p-8 max-w-md w-full border border-[#cfe7d7] dark:border-[#2a4a35]">
         <h3 class="text-2xl font-bold mb-4">Confirmar Eliminación</h3>
-        <p class="mb-6">¿Estás seguro de que deseas eliminar al usuario <strong>{{ userToDelete?.name }}</strong>? Esta acción no se puede deshacer.</p>
+        <p class="mb-6">¿Estás seguro de que deseas eliminar al usuario <strong>{{ userToDelete?.name }}</strong>? Esta
+          acción no se puede deshacer.</p>
         <div class="flex gap-3">
-          <button
-            @click="deleteUser"
-            class="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg transition-all"
-          >
+          <button @click="deleteUser"
+            class="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg transition-all">
             Eliminar
           </button>
-          <button
-            @click="closeDeleteModal"
-            class="flex-1 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 font-bold py-3 rounded-lg transition-all"
-          >
+          <button @click="closeDeleteModal"
+            class="flex-1 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 font-bold py-3 rounded-lg transition-all">
             Cancelar
           </button>
         </div>
@@ -184,68 +150,119 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
-import { users as importedUsers } from '../data/users'
+  import { ref, computed, onMounted } from 'vue'
+  import { userStore } from '../store/userStore'
 
-// Estado reactivo
-const users = ref([...importedUsers])
+  // Estado reactivo
+  const users = ref([])
+  const loading = ref(true)
+  const error = ref(null)
 
-// Buscador
-const searchName = ref('')
-const searchEmail = ref('')
-const searchRole = ref('')
+  // Buscador
+  const searchName = ref('')
+  const searchEmail = ref('')
+  const searchRole = ref('')
 
-// Usuarios filtrados
-const filteredUsers = computed(() => {
-  return users.value.filter(user => {
-    const matchesName = user.name.toLowerCase().includes(searchName.value.toLowerCase())
-    const matchesEmail = user.email.toLowerCase().includes(searchEmail.value.toLowerCase())
-    const matchesRole = searchRole.value === '' || user.role === searchRole.value
-    
-    return matchesName && matchesEmail && matchesRole
+  const fetchUsers = async () => {
+    try {
+      loading.value = true
+      const response = await fetch('http://localhost:8000/api/users', {
+        headers: {
+          'Authorization': `Bearer ${userStore.token}`,
+          'Accept': 'application/json',
+        }
+      })
+      if (!response.ok) throw new Error('Error al cargar usuarios')
+      users.value = await response.json()
+    } catch (err) {
+      error.value = err.message
+      console.error(err)
+    } finally {
+      loading.value = false
+    }
+  }
+
+  onMounted(fetchUsers)
+
+  // Usuarios filtrados
+  const filteredUsers = computed(() => {
+    return users.value.filter(user => {
+      const matchesName = user.name.toLowerCase().includes(searchName.value.toLowerCase())
+      const matchesEmail = user.email.toLowerCase().includes(searchEmail.value.toLowerCase())
+      const matchesRole = searchRole.value === '' || user.role === searchRole.value
+
+      return matchesName && matchesEmail && matchesRole
+    })
   })
-})
 
-// Modales
-const showEditModal = ref(false)
-const showDeleteModal = ref(false)
-const editingUser = ref({})
-const userToDelete = ref(null)
+  // Modales
+  const showEditModal = ref(false)
+  const showDeleteModal = ref(false)
+  const editingUser = ref({})
+  const userToDelete = ref(null)
 
-// Funciones de gestión de usuarios
-const editUser = (user) => {
-  editingUser.value = { ...user }
-  showEditModal.value = true
-}
-
-const saveUser = () => {
-  const index = users.value.findIndex(u => u.id === editingUser.value.id)
-  if (index !== -1) {
-    users.value[index] = { ...editingUser.value }
+  // Funciones de gestión de usuarios
+  const editUser = (user) => {
+    editingUser.value = { ...user }
+    showEditModal.value = true
   }
-  closeEditModal()
-}
 
-const closeEditModal = () => {
-  showEditModal.value = false
-  editingUser.value = {}
-}
+  const saveUser = async () => {
+    try {
+      const response = await fetch(`http://localhost:8000/api/users/${editingUser.value.id}`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${userStore.token}`,
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(editingUser.value)
+      })
 
-const confirmDeleteUser = (user) => {
-  userToDelete.value = user
-  showDeleteModal.value = true
-}
+      if (!response.ok) throw new Error('Error al actualizar usuario')
 
-const deleteUser = () => {
-  const index = users.value.findIndex(u => u.id === userToDelete.value.id)
-  if (index !== -1) {
-    users.value.splice(index, 1)
+      const updatedUser = await response.json()
+      const index = users.value.findIndex(u => u.id === updatedUser.id)
+      if (index !== -1) {
+        users.value[index] = updatedUser
+      }
+      closeEditModal()
+    } catch (err) {
+      alert(err.message)
+    }
   }
-  closeDeleteModal()
-}
 
-const closeDeleteModal = () => {
-  showDeleteModal.value = false
-  userToDelete.value = null
-}
+  const closeEditModal = () => {
+    showEditModal.value = false
+    editingUser.value = {}
+  }
+
+  const confirmDeleteUser = (user) => {
+    userToDelete.value = user
+    showDeleteModal.value = true
+  }
+
+  const deleteUser = async () => {
+    try {
+      const response = await fetch(`http://localhost:8000/api/users/${userToDelete.value.id}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${userStore.token}`,
+          'Accept': 'application/json',
+        }
+      })
+
+      if (!response.ok) throw new Error('Error al eliminar usuario')
+
+      users.value = users.value.filter(u => u.id !== userToDelete.value.id)
+      closeDeleteModal()
+    } catch (err) {
+      alert(err.message)
+    }
+  }
+
+  const closeDeleteModal = () => {
+    showDeleteModal.value = false
+    userToDelete.value = null
+  }
 </script>

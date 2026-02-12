@@ -11,47 +11,29 @@
         <form @submit.prevent="handleSubmit" class="space-y-6">
           <div>
             <label for="name" class="block text-sm font-bold mb-2">Nombre completo *</label>
-            <input 
-              type="text" 
-              id="name"
-              v-model="form.name"
-              required
+            <input type="text" id="name" v-model="form.name" required
               class="w-full px-4 py-3 rounded-lg border border-[#cfe7d7] dark:border-[#2a4a35] bg-white dark:bg-[#152a1c] focus:outline-none focus:ring-2 focus:ring-primary transition-all"
-              placeholder="Tu nombre"
-            />
+              placeholder="Tu nombre" />
           </div>
 
           <div>
             <label for="email" class="block text-sm font-bold mb-2">Email *</label>
-            <input 
-              type="email" 
-              id="email"
-              v-model="form.email"
-              required
+            <input type="email" id="email" v-model="form.email" required
               class="w-full px-4 py-3 rounded-lg border border-[#cfe7d7] dark:border-[#2a4a35] bg-white dark:bg-[#152a1c] focus:outline-none focus:ring-2 focus:ring-primary transition-all"
-              placeholder="tu@email.com"
-            />
+              placeholder="tu@email.com" />
           </div>
 
           <div>
             <label for="phone" class="block text-sm font-bold mb-2">Teléfono</label>
-            <input 
-              type="tel" 
-              id="phone"
-              v-model="form.phone"
+            <input type="tel" id="phone" v-model="form.phone"
               class="w-full px-4 py-3 rounded-lg border border-[#cfe7d7] dark:border-[#2a4a35] bg-white dark:bg-[#152a1c] focus:outline-none focus:ring-2 focus:ring-primary transition-all"
-              placeholder="+34 600 000 000"
-            />
+              placeholder="+34 600 000 000" />
           </div>
 
           <div>
             <label for="subject" class="block text-sm font-bold mb-2">Asunto *</label>
-            <select 
-              id="subject"
-              v-model="form.subject"
-              required
-              class="w-full px-4 py-3 rounded-lg border border-[#cfe7d7] dark:border-[#2a4a35] bg-white dark:bg-[#152a1c] focus:outline-none focus:ring-2 focus:ring-primary transition-all"
-            >
+            <select id="subject" v-model="form.subject" required
+              class="w-full px-4 py-3 rounded-lg border border-[#cfe7d7] dark:border-[#2a4a35] bg-white dark:bg-[#152a1c] focus:outline-none focus:ring-2 focus:ring-primary transition-all">
               <option value="">Selecciona un asunto</option>
               <option value="property">Consulta sobre propiedades</option>
               <option value="audit">Auditoría energética</option>
@@ -63,20 +45,13 @@
 
           <div>
             <label for="message" class="block text-sm font-bold mb-2">Mensaje *</label>
-            <textarea 
-              id="message"
-              v-model="form.message"
-              required
-              rows="6"
+            <textarea id="message" v-model="form.message" required rows="6"
               class="w-full px-4 py-3 rounded-lg border border-[#cfe7d7] dark:border-[#2a4a35] bg-white dark:bg-[#152a1c] focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-none"
-              placeholder="Cuéntanos cómo podemos ayudarte..."
-            ></textarea>
+              placeholder="Cuéntanos cómo podemos ayudarte..."></textarea>
           </div>
 
-          <button 
-            type="submit"
-            class="w-full bg-primary hover:bg-primary/90 text-[#0d1b12] font-bold py-4 rounded-lg transition-all flex items-center justify-center gap-2"
-          >
+          <button type="submit"
+            class="w-full bg-primary hover:bg-primary/90 text-[#0d1b12] font-bold py-4 rounded-lg transition-all flex items-center justify-center gap-2">
             Enviar mensaje <span class="material-symbols-outlined">send</span>
           </button>
         </form>
@@ -93,7 +68,7 @@
       <div>
         <div class="bg-white dark:bg-[#152a1c] rounded-xl p-8 border border-[#cfe7d7] dark:border-[#2a4a35] mb-8">
           <h2 class="text-2xl font-black mb-6">Información de Contacto</h2>
-          
+
           <div class="space-y-6">
             <div class="flex items-start gap-4">
               <div class="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -144,7 +119,8 @@
         </div>
 
         <!-- Marcador de Posición del Mapa -->
-        <div class="bg-[#e7f3eb] dark:bg-[#1a3022] rounded-xl h-64 flex items-center justify-center border border-[#cfe7d7] dark:border-[#2a4a35]">
+        <div
+          class="bg-[#e7f3eb] dark:bg-[#1a3022] rounded-xl h-64 flex items-center justify-center border border-[#cfe7d7] dark:border-[#2a4a35]">
           <div class="text-center">
             <span class="material-symbols-outlined text-6xl text-primary mb-2">map</span>
             <p class="text-[#4c9a66] dark:text-[#a0ccb0] font-medium">Partida La Banderilla 44G, Valencia</p>
@@ -156,33 +132,33 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+  import { ref } from 'vue'
 
-const form = ref({
-  name: '',
-  email: '',
-  phone: '',
-  subject: '',
-  message: ''
-})
+  const form = ref({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  })
 
-const submitted = ref(false)
+  const submitted = ref(false)
 
-const handleSubmit = () => {
-  // En una aplicación real, esto enviaría los datos del formulario a un backend
-  console.log('Form submitted:', form.value)
-  submitted.value = true
-  
-  // Reiniciar formulario después de 3 segundos
-  setTimeout(() => {
-    form.value = {
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: ''
-    }
-    submitted.value = false
-  }, 3000)
-}
+  const handleSubmit = () => {
+    // En una aplicación real, esto enviaría los datos del formulario a un backend
+    console.log('Form submitted:', form.value)
+    submitted.value = true
+
+    // Reiniciar formulario después de 3 segundos
+    setTimeout(() => {
+      form.value = {
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: ''
+      }
+      submitted.value = false
+    }, 3000)
+  }
 </script>
