@@ -38,7 +38,7 @@
         <div class="p-6">
           <div class="flex items-center gap-2 text-sm text-[#4c9a66] dark:text-[#a0ccb0] mb-3">
             <span class="material-symbols-outlined text-sm">calendar_today</span>
-            <time>{{ post.date }}</time>
+            <time>{{ formatDate(post.date) }}</time>
           </div>
           <h2 class="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
             {{ post.title }}
@@ -58,6 +58,7 @@
 
 <script setup>
   import { ref, computed, onMounted } from 'vue'
+  import { formatDate } from '../utils/formatters'
 
   const categories = ['Estilos de vida', 'Agenda 2030', 'Subvenciones']
   const selectedCategory = ref(null)
