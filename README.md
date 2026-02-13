@@ -1,11 +1,16 @@
-# SERRAINNOVA - Plataforma Inmobiliaria Sostenible
+# 🌳 SERRAINNOVA - Plataforma Inmobiliaria Sostenible
 
-> **Proyecto Académico Grupal - Desarrollo de Aplicaciones Web (DAW) | PIIE**
-> Este proyecto ha sido desarrollado como parte del módulo de Proyecto de Fin de Grado, integrando tecnologías modernas de desarrollo web en un entorno profesional.
+[![Laravel](https://img.shields.io/badge/Laravel-12.x-FF2D20?style=for-the-badge&logo=laravel)](https://laravel.com)
+[![Vue](https://img.shields.io/badge/Vue.js-3.x-4FC08D?style=for-the-badge&logo=vue.js)](https://vuejs.org)
+[![Tailwind](https://img.shields.io/badge/Tailwind-CSS-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com)
+[![Status](https://img.shields.io/badge/Status-Academic_Project-orange?style=for-the-badge)](https://github.com)
+
+> **🚀 Proyecto Académico Grupal - Desarrollo de Aplicaciones Web (DAW) | PIIE**
+> Integrando sostenibilidad y tecnología de vanguardia en el mercado inmobiliario.
 
 ---
 
-## 🌟 Visión del Proyecto
+## 📌 Visión del Proyecto
 SERRAINNOVA es una solución digital avanzada para el sector inmobiliario, centrada exclusivamente en la **sostenibilidad** y la **eficiencia energética**. La plataforma no solo permite la compra/venta de propiedades, sino que actúa como una herramienta de concienciación y cálculo de impacto ambiental para el ciudadano moderno.
 
 ---
