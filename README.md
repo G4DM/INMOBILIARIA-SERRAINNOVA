@@ -1,141 +1,224 @@
-# SERRAINNOVA - Plataforma Inmobiliaria Sostenible
+# 🗄️ SERRAINNOVA Database - SQL Reference & Recovery
 
-Plataforma web inmobiliaria desarrollada como **proyecto académico de gran envergadura**, enfocada en la gestión de propiedades sostenibles y eficiencia energética, utilizando **Laravel**, **Vue.js** y **TailwindCSS**.
+[![Database](https://img.shields.io/badge/Database-MySQL%20Compatible-4479A1?style=for-the-badge&logo=mysql)](https://www.mysql.com/)
+[![Schema](https://img.shields.io/badge/Schema-Production%20Ready-green?style=for-the-badge)]()
+[![Fallback](https://img.shields.io/badge/Fallback-SQL%20Recovery-orange?style=for-the-badge)]()
 
-<br>
+Este documento define la estructura oficial de la base de datos de **SERRAINNOVA** y proporciona un script SQL completo preparado para escenarios de recuperación, despliegue manual o fallo de seeders.
 
-## 📌 Descripción del Proyecto
+El script permite crear desde cero:
 
-SERRAINNOVA es una plataforma orientada a ofrecer **soluciones inmobiliarias sostenibles**, donde los usuarios pueden:
+- Base de datos
+- Tablas
+- Relaciones estructurales
+- Datos iniciales
 
-- Consultar propiedades disponibles para compra o alquiler.
-- Acceder a información sobre eficiencia energética y ahorro de CO2.
-- Calcular el impacto ambiental de su vivienda.
-- Gestionar propiedades y servicios desde un backoffice administrativo.
+---
 
-El proyecto combina un **frontend moderno y responsive** con TailwindCSS y Vue.js, junto con un **backend robusto** basado en Laravel, ofreciendo un sistema escalable y profesional.
+## 🧱 Filosofía de Diseño
 
-<br>
+La base de datos ha sido diseñada siguiendo tres principios clave:
 
-## 🛠 Tecnologías Utilizadas
+✔ Simplicidad estructural  
+✔ Compatibilidad con Eloquent ORM  
+✔ Recuperación rápida ante fallos  
 
-- **Frontend:**
-  - Vue.js (composición y componentes)
-  - TailwindCSS (diseño responsive y utilitario)
-  - Material Symbols Outlined (iconografía)
-- **Backend:**
-  - Laravel
-  - Eloquent ORM para gestión de base de datos
-  - Autenticación y control de usuarios
-- **Base de Datos:**
-  - MySQL / MariaDB
-- **Otras:**
-  - Git para control de versiones
-  - Vite como bundler
+Aunque el entorno principal utiliza migraciones y seeders de Laravel, el archivo `.sql` actúa como **backup estructural universal**.
 
-<br>
+---
 
-## 🏗 Estructura del Proyecto
+## 📦 Tablas del Sistema
 
-```text
-/serrainnova
-├─ app/                # Lógica principal de Laravel
-├─ bootstrap/          # Configuración inicial
-├─ config/             # Configuraciones del proyecto
-├─ database/           # Migraciones y seeders
-├─ public/             # Archivos públicos (CSS, JS, imágenes)
-├─ resources/
-│   ├─ css/            # TailwindCSS
-│   ├─ js/             # Vue.js components y scripts
-│   └─ views/          # Blade templates
-├─ routes/             # Definición de rutas web y API
-└─ tests/              # Pruebas unitarias y de integración
+### 👤 users
+Gestiona autenticación, roles y metadatos de usuarios.
+
+| Campo | Tipo | Descripción |
+|--------|-----------|----------------|
+| id | unsigned bigint | Identificador único |
+| name | varchar | Nombre completo |
+| email | varchar (unique) | Email del usuario |
+| registrationDate | varchar | Fecha registro |
+| phone | varchar | Teléfono |
+| lastLogin | varchar | Último acceso |
+| role | varchar | user / moderator |
+| password | varchar | Hash bcrypt |
+| created_at | timestamp | Registro Laravel |
+| updated_at | timestamp | Actualización Laravel |
+
+---
+
+### 🏠 properties
+Almacena todas las propiedades inmobiliarias sostenibles.
+
+| Campo | Tipo | Descripción |
+|------------|-----------------|----------------|
+| title | varchar | Nombre comercial |
+| price | unsigned bigint | Precio |
+| location | varchar | Dirección |
+| bedrooms | int | Dormitorios |
+| bathrooms | int | Baños |
+| area | int | Metros cuadrados |
+| image | text | URL imagen |
+| energyCertification | varchar | Certificado energético |
+| energyType | json | Fuentes energéticas |
+| materials | json | Materiales sostenibles |
+| co2Emissions | int | Emisiones estimadas |
+| co2Savings | int | Ahorro estimado |
+| description | text | Descripción |
+| features | json | Características |
+| sustainabilityChecklist | json | Checklist ecológico |
+| certifications | json | Certificaciones oficiales |
+| hidden | boolean | Visibilidad |
+
+---
+
+### 📰 articles
+Contenido editorial y divulgativo.
+
+| Campo | Tipo | Descripción |
+|-----------|----------|----------------|
+| title | varchar | Título |
+| excerpt | text | Resumen |
+| category | varchar | Categoría |
+| date | date | Fecha publicación |
+| image | varchar | Imagen portada |
+| content | longtext | Contenido completo |
+| hidden | boolean | Visibilidad |
+
+---
+
+## ⚙️ Tipos de Datos Relevantes
+
+### JSON Storage
+Se utiliza JSON para campos flexibles como:
+
+- energyType
+- materials
+- features
+- sustainabilityChecklist
+- certifications
+
+Esto permite extender funcionalidades sin migraciones constantes.
+
+---
+
+### Unsigned BigInteger
+El campo `price` usa `unsignedBigInteger` para:
+
+- Soportar grandes volúmenes económicos
+- Mantener compatibilidad con Laravel
+
+---
+
+## 🚨 Uso del Script SQL
+
+El archivo SQL debe utilizarse únicamente cuando:
+
+- Fallan migraciones o seeders
+- Se necesita despliegue manual
+- Se realiza testing independiente del framework
+- Se reconstruye la base de datos en entornos externos
+
+---
+
+## ▶️ Ejecución Manual
+
+### 1. Crear Base de Datos
+```sql
+CREATE DATABASE serrainnova;
+USE serrainnova;
+```
+### 2. Ejecutar Script Completo
+```sql
+mysql -u root -p serrainnova < serrainnova.sql
 ```
 
-<br>
+---
 
-## 🚀 Instalación y Configuración
+## 🌱 Datos Iniciales Incluidos
 
+El script introduce:
+- 5 usuarios (incluyendo moderador)
+- 6 propiedades sostenibles
+- 6 artículos del blog
+
+---
+
+## 🔐 Credenciales de Prueba
+
+| Rol |	Email | Password |
+|-----|-------|----------|
+| Moderator |	maria.garcia@email.com | password123 |
+| User | Otros registros | password123 |
+
+---
+
+## 🧪 Compatibilidad con Laravel
+
+El script ha sido alineado para coincidir con:
+
+- Modelos Eloquent
+- Migraciones actuales
+- Seeders oficiales
+
+> [!WARNING]
+> No sustituye el flujo Laravel estándar, solo actúa como respaldo.
+
+---
+
+## 📊 Consideraciones Técnicas
+### Charset
+```sql
+utf8mb4
+```
+Permite compatibilidad total con caracteres internacionales y emojis.
+
+### Engine
+```sql
+InnoDB
+```
+Garantia:
+- Transacciones
+- Integridad de datos
+- Bloqueo por fila
+
+---
+
+## 🧩 Convenciones del Proyecto
+- Campos booleanos almacenados como `tinyint(1)`
+-  Uso de timestamps Laravel
+-  Nombres de tablas en plural
+-  JSON para datos estructurales extensibles
+
+---
+
+## 🧯 Recuperación Rápida
+Si el entorno queda corrupto:
 ```bash
-# Clonar el repositorio
-git clone https://github.com/tu-usuario/serrainnova.git
-cd serrainnova
-
-# Instalar dependencias de Laravel
-composer install
-
-# Instalar dependencias de Node.js
-npm install
-
-# Configurar archivo .env
-cp .env.example .env
-php artisan key:generate
-
-# Migrar base de datos
-php artisan migrate
-
-# Iniciar servidor de desarrollo
-php artisan serve
-
-# Iniciar frontend (Vite)
-npm run dev
+DROP DATABASE serrainnova;
+CREATE DATABASE serrainnova;
+IMPORTAR SCRIPT SQL
 ```
 
-<br>
+---
 
-## ⚙ Funcionalidades Principales
+## 📌 Recomendaciones Profesionales
 
-1. **Gestión de Propiedades**
-   - CRUD completo de inmuebles.
-   - Subida de imágenes y certificados PDF.
-2. **Impacto Energético**
-   - Cálculo de ahorro de CO2.
-   - Estimación de ahorro económico anual.
-3. **Servicios Sostenibles**
-   - Auditorías energéticas.
-   - Valoraciones de propiedades según eficiencia.
-   - Asesoría hipotecaria verde.
-4. **Autenticación y Roles**
-   - Usuarios, administradores y agentes inmobiliarios.
-5. **Diseño Responsivo**
-   - Adaptación a dispositivos móviles, tablets y escritorio.
-   - Sistema Light/Dark Mode.
+- Priorizar migraciones Laravel en desarrollo activo
+- Utilizar SQL fallback únicamente en contingencias
+- Mantener sincronía entre migraciones y script manual
 
-<br>
+> [!WARNING]
+> El script contiene datos de prueba. Nunca debe ejecutarse en producción sin revisión previa.
 
-## 🎨 Guía de Estilos (Tailwind + Figma)
+> [!TIP]
+> Puedes inspeccionar rápidamente los datos ejecutando:
+```sql
+SELECT * FROM users;
+SELECT * FROM properties;
+SELECT * FROM articles;
+```
 
-- **Paleta de colores:**
-  - `primary`: #13ec5b
-  - `background-light`: #f6f8f6
-  - `background-dark`: #102216
-  - `textdark`: #0d1b12
-  - `success`: #078829
-- **Tipografía:** Inter, con pesos de 400 a 900
-- **Border Radius:** sm (0.25rem), lg (0.5rem), xl (0.75rem), full (9999px)
-- **Componentes base:** Botones, tarjetas, formularios, navbar, footer
+---
 
-<br>
-
-## 📂 Plan Futuro
-
-- Integración completa de **backoffice administrativo**.
-- Sistema de autenticación avanzado con roles.
-- Dashboard con estadísticas de impacto energético.
-- Módulo de notificaciones y correo electrónico.
-- Versiones multi-idioma (ES / EN / FR).
-- Preparación para **producción y deployment**.
-
-<br>
-
-## 📝 Licencia
-
-Este proyecto se distribuye bajo la licencia **MIT**.
-
-<br>
-
-## 📞 Contacto
-
-- Email: info@serrainova.es  
-- Teléfono: +34 960 000 000  
-- Dirección: Partida La Banderilla 44G, Valencia, España
+© 2026 SERRAINNOVA Team | DAW Academic Project
