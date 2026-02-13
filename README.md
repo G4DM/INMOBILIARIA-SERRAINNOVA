@@ -1,141 +1,97 @@
-# SERRAINNOVA - Plataforma Inmobiliaria Sostenible
+# 🛠️ SERRAINNOVA Backend - Core API
 
-Plataforma web inmobiliaria desarrollada como **proyecto académico de gran envergadura**, enfocada en la gestión de propiedades sostenibles y eficiencia energética, utilizando **Laravel**, **Vue.js** y **TailwindCSS**.
+[![Laravel Version](https://img.shields.io/badge/Laravel-12.x-FF2D20?style=for-the-badge&logo=laravel)](https://laravel.com)
+[![PHP Version](https://img.shields.io/badge/PHP-8.2%2B-777BB4?style=for-the-badge&logo=php)](https://php.net)
+[![Auth](https://img.shields.io/badge/Sanctum-Authenticated-blue?style=for-the-badge)](https://laravel.com/docs/sanctum)
 
-<br>
+Bienvenido al corazón tecnológico de **SERRAINNOVA**. Esta API REST robusta y escalable gestiona toda la lógica de negocio, seguridad y persistencia de datos del ecosistema inmobiliario sostenible.
 
-## 📌 Descripción del Proyecto
+---
 
-SERRAINNOVA es una plataforma orientada a ofrecer **soluciones inmobiliarias sostenibles**, donde los usuarios pueden:
+## 🏗️ Arquitectura y Tecnologías
 
-- Consultar propiedades disponibles para compra o alquiler.
-- Acceder a información sobre eficiencia energética y ahorro de CO2.
-- Calcular el impacto ambiental de su vivienda.
-- Gestionar propiedades y servicios desde un backoffice administrativo.
+El backend se ha construido siguiendo los estándares modernos de **Laravel**, priorizando el rendimiento y la seguridad.
 
-El proyecto combina un **frontend moderno y responsive** con TailwindCSS y Vue.js, junto con un **backend robusto** basado en Laravel, ofreciendo un sistema escalable y profesional.
+- **Framework**: Laravel 12.x
+- **ORM**: Eloquent (Gestión elegante de modelos)
+- **Seguridad**: Laravel Sanctum (Autenticación basada en Tokens)
+- **Base de Datos**: SQLite (Optimizado para desarrollo rápido)
+- **Patrón**: MVC (Model-View-Controller) enfocado únicamente en la capa API.
 
-<br>
+---
 
-## 🛠 Tecnologías Utilizadas
+## 🔐 Seguridad y Roles
 
-- **Frontend:**
-  - Vue.js (composición y componentes)
-  - TailwindCSS (diseño responsive y utilitario)
-  - Material Symbols Outlined (iconografía)
-- **Backend:**
-  - Laravel
-  - Eloquent ORM para gestión de base de datos
-  - Autenticación y control de usuarios
-- **Base de Datos:**
-  - MySQL / MariaDB
-- **Otras:**
-  - Git para control de versiones
-  - Vite como bundler
+Implementamos un sistema de protección de dos capas:
+1.  **Sanctum**: Verificación de tokens de acceso Bearer.
+2.  **Middleware de Roles**: Filtro personalizado `CheckRole` que restringe el acceso según permisos.
 
-<br>
+### Roles Disponibles:
+| Rol | Permisos |
+| :--- | :--- |
+| `moderator` | CRUD total de propiedades, blogs y usuarios. Acceso a paneles administrativos. |
+| `user` | Acceso a perfil propio y favoritos (proximamente). |
 
-## 🏗 Estructura del Proyecto
+---
 
-```text
-/serrainnova
-├─ app/                # Lógica principal de Laravel
-├─ bootstrap/          # Configuración inicial
-├─ config/             # Configuraciones del proyecto
-├─ database/           # Migraciones y seeders
-├─ public/             # Archivos públicos (CSS, JS, imágenes)
-├─ resources/
-│   ├─ css/            # TailwindCSS
-│   ├─ js/             # Vue.js components y scripts
-│   └─ views/          # Blade templates
-├─ routes/             # Definición de rutas web y API
-└─ tests/              # Pruebas unitarias y de integración
-```
+## 📂 Estructura Principal
 
-<br>
+- `app/Http/Controllers`: Lógica de los endpoints.
+- `app/Models`: Definición de esquemas y relaciones de datos.
+- `database/migrations`: Historial de la estructura de la base de datos.
+- `database/seeders`: Generadores de datos de prueba premium.
+- `routes/api.php`: Definición de todas las rutas del sistema.
 
-## 🚀 Instalación y Configuración
+---
 
-```bash
-# Clonar el repositorio
-git clone https://github.com/tu-usuario/serrainnova.git
-cd serrainnova
+## 🚀 Instalación y Puesta en Marcha
 
-# Instalar dependencias de Laravel
-composer install
+Sigue estos pasos para tener el servidor funcionando en menos de 2 minutos:
 
-# Instalar dependencias de Node.js
-npm install
+1.  **Instalar Dependencias**:
+    ```bash
+    composer install
+    ```
+2.  **Configurar Entorno**:
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
+3.  **Preparar Base de Datos**:
+    ```bash
+    # Crea el archivo de base de datos si no existe
+    touch database/database.sqlite
+    
+    # Ejecuta migraciones y carga datos de prueba
+    php artisan migrate:fresh --seed
+    ```
+4.  **Iniciar Servidor**:
+    ```bash
+    php artisan serve
+    ```
 
-# Configurar archivo .env
-cp .env.example .env
-php artisan key:generate
+---
 
-# Migrar base de datos
-php artisan migrate
+## 📡 Referencia de la API (Endpoints Clave)
 
-# Iniciar servidor de desarrollo
-php artisan serve
+### 🔓 Públicos
+- `GET /api/properties`: Lista todas las propiedades visibles.
+- `GET /api/articles`: Lista todos los artículos del blog.
+- `POST /api/login`: Inicio de sesión (devuelve token).
 
-# Iniciar frontend (Vite)
-npm run dev
-```
+### 🔒 Protegidos (`Authorization: Bearer <token>`)
+- `GET /api/users`: Lista de usuarios (solo moderadores).
+- `POST /api/properties`: Crear nueva propiedad.
+- `PUT /api/articles/{id}`: Actualizar artículo.
+- `DELETE /api/users/{id}`: Eliminar cuenta de usuario.
 
-<br>
+---
 
-## ⚙ Funcionalidades Principales
+> [!IMPORTANT]
+> Los tipos de datos han sido refinados. El campo `price` es de tipo `unsignedBigInteger` y las fechas utilizan el formato nativo de base de datos `YYYY-MM-DD`.
 
-1. **Gestión de Propiedades**
-   - CRUD completo de inmuebles.
-   - Subida de imágenes y certificados PDF.
-2. **Impacto Energético**
-   - Cálculo de ahorro de CO2.
-   - Estimación de ahorro económico anual.
-3. **Servicios Sostenibles**
-   - Auditorías energéticas.
-   - Valoraciones de propiedades según eficiencia.
-   - Asesoría hipotecaria verde.
-4. **Autenticación y Roles**
-   - Usuarios, administradores y agentes inmobiliarios.
-5. **Diseño Responsivo**
-   - Adaptación a dispositivos móviles, tablets y escritorio.
-   - Sistema Light/Dark Mode.
+> [!TIP]
+> Puedes usar **Laravel Tinker** para interactuar rápidamente con la base de datos desde la terminal: `php artisan tinker`.
 
-<br>
-
-## 🎨 Guía de Estilos (Tailwind + Figma)
-
-- **Paleta de colores:**
-  - `primary`: #13ec5b
-  - `background-light`: #f6f8f6
-  - `background-dark`: #102216
-  - `textdark`: #0d1b12
-  - `success`: #078829
-- **Tipografía:** Inter, con pesos de 400 a 900
-- **Border Radius:** sm (0.25rem), lg (0.5rem), xl (0.75rem), full (9999px)
-- **Componentes base:** Botones, tarjetas, formularios, navbar, footer
-
-<br>
-
-## 📂 Plan Futuro
-
-- Integración completa de **backoffice administrativo**.
-- Sistema de autenticación avanzado con roles.
-- Dashboard con estadísticas de impacto energético.
-- Módulo de notificaciones y correo electrónico.
-- Versiones multi-idioma (ES / EN / FR).
-- Preparación para **producción y deployment**.
-
-<br>
-
-## 📝 Licencia
-
-Este proyecto se distribuye bajo la licencia **MIT**.
-
-<br>
-
-## 📞 Contacto
-
-- Email: info@serrainova.es  
-- Teléfono: +34 960 000 000  
-- Dirección: Partida La Banderilla 44G, Valencia, España
+---
+© 2026 SERRAINNOVA Team | DAW Academic Project

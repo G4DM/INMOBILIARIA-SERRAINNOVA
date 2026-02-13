@@ -14,22 +14,25 @@ class Property extends Model
         'bathrooms',
         'area',
         'image',
-        'energy_certification',
-        'energy_type',
+        'energyCertification',
+        'energyType',
         'materials',
-        'co2_emissions',
-        'co2_savings',
+        'co2Emissions',
+        'co2Savings',
         'description',
         'features',
-        'sustainability_checklist',
+        'sustainabilityChecklist',
         'certifications',
+        'hidden',
     ];
 
     protected $casts = [
-        'energy_type' => 'array',
+        'price' => 'integer',
+        'energyType' => 'array',
         'materials' => 'array',
         'features' => 'array',
-        'sustainability_checklist' => 'array',
+        'sustainabilityChecklist' => 'array',
         'certifications' => 'array',
+        'hidden' => 'boolean',
     ];
 }

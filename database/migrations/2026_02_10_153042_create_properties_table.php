@@ -14,21 +14,22 @@ return new class extends Migration
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('price');
+            $table->unsignedBigInteger('price');
             $table->string('location');
             $table->integer('bedrooms');
             $table->integer('bathrooms');
             $table->integer('area');
             $table->text('image');
-            $table->string('energy_certification');
-            $table->json('energy_type');
+            $table->string('energyCertification');
+            $table->json('energyType');
             $table->json('materials');
-            $table->integer('co2_emissions');
-            $table->integer('co2_savings');
+            $table->integer('co2Emissions');
+            $table->integer('co2Savings');
             $table->text('description');
             $table->json('features');
-            $table->json('sustainability_checklist');
+            $table->json('sustainabilityChecklist');
             $table->json('certifications');
+            $table->boolean('hidden')->default(false);
             $table->timestamps();
         });
     }
