@@ -44,19 +44,18 @@ El proyecto se basa en una arquitectura de **SPA (Single Page Application)** sep
 ## 📁 Estructura del Repositorio
 ```text
 /serrainnova
-└── main/
-    ├── backend/           # Proyecto Laravel (API REST)
-    │   ├── app/           # Modelos, Controladores y Middleware
-    │   ├── database/      # Migraciones y Seeders (Datos iniciales)
-    │   ├── routes/        # Definición de endpoints API
-    │   └── .env           # Configuración del servidor
-    └── frontend/          # Proyecto Vue.js (SPA)
-        ├── src/
-        │   ├── views/     # Páginas (Públicas y Admin)
-        │   ├── components/ # Elementos reutilizables
-        │   ├── store/     # Gestión de estado (userStore)
-        │   └── router/    # Navegación SPA
-        └── tailwind.config.js
+├── backend/           # Proyecto Laravel (API REST)
+│   ├── app/           # Modelos, Controladores y Middleware
+│   ├── database/      # Migraciones y Seeders (Datos iniciales)
+│   ├── routes/        # Definición de endpoints API
+│   └── .env           # Configuración del servidor
+└── frontend/          # Proyecto Vue.js (SPA)
+    ├── src/
+    │   ├── views/     # Páginas (Públicas y Admin)
+    │   ├── components/ # Elementos reutilizables
+    │   ├── store/     # Gestión de estado (userStore)
+    │   └── router/    # Navegación SPA
+    └── tailwind.config.js
 ```
 
 ---
@@ -124,18 +123,16 @@ Una vez ejecutado el seeder (`php artisan db:seed`), puedes usar:
 
 ---
 
-## � Documentación Adicional
+## 📋 Documentación Adicional
 Para más detalles técnicos, consulta los archivos internos:
 - [Proceso de Conexión](file:///c:/dev/school/main/PROCESO_CONEXION.md): Detalle de la integración API.
 - [Explicación del Proyecto](file:///c:/dev/school/main/EXPLICACION_PROYECTO.md): Filosofía y arquitectura.
 
 ---
 
-## � Equipo de Desarrollo (DAW)
+## 🔨 Equipo de Desarrollo (DAW)
 Proyecto realizado por el grupo de alumnos de **Ciclo Formativo de Grado Superior en Desarrollo de Aplicaciones Web**.
 
-- **Centro:** [Nombre del Centro]
-- **Asignatura:** Proyecto / PIIE
 - **Fecha:** Febrero 2026
 
 ---
