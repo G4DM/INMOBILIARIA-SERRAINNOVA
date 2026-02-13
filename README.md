@@ -73,7 +73,11 @@ php artisan key:generate
 
 # Configurar base de datos (por defecto SQLite)
 # Si usas SQLite, crea el archivo: touch database/database.sqlite
-php artisan migrate:fresh --seed  # Instala tablas y datos de prueba
+# Migrar base de datos
+php artisan migrate --seed
+
+# OPCIONAL: Si prefieres usar SQL puro, usa el script en la raíz:
+# mysql -u usuario -p base_de_datos < setup_database.sql
 php artisan serve
 ```
 *El servidor correrá en [http://localhost:8000](http://localhost:8000)*
