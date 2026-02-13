@@ -2,6 +2,8 @@
 -- Proyecto Académico (DAW / PIIE)
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+CREATE DATABASE IF NOT EXISTS `backend`;
+USE `backend`;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
