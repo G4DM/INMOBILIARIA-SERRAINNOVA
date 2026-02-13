@@ -7,8 +7,21 @@
       Volver al blog
     </router-link>
 
+    <!-- Estado de Carga -->
+    <div v-if="loading" class="text-center py-12">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+      <p class="text-lg text-[#4c9a66] dark:text-[#a0ccb0]">Cargando artículo...</p>
+    </div>
+
+    <!-- Error / No Encontrado -->
+    <div v-else-if="error || !post" class="text-center py-12">
+      <span class="material-symbols-outlined text-6xl text-[#4c9a66] dark:text-[#a0ccb0] mb-4">article_shortcut</span>
+      <p class="text-xl font-bold mb-2">Artículo no encontrado</p>
+      <router-link to="/blog" class="text-primary hover:underline">Volver al blog</router-link>
+    </div>
+
     <!-- Encabezado del Artículo -->
-    <article
+    <article v-else
       class="bg-white dark:bg-[#152a1c] rounded-xl overflow-hidden shadow-lg border border-[#cfe7d7] dark:border-[#2a4a35]">
       <div class="relative h-96 overflow-hidden">
         <img :src="post.image" :alt="post.title" class="w-full h-full object-cover" />
@@ -21,7 +34,7 @@
           </span>
           <div class="flex items-center gap-2 text-sm text-[#4c9a66] dark:text-[#a0ccb0]">
             <span class="material-symbols-outlined text-sm">calendar_today</span>
-            <time>{{ post.date }}</time>
+            <time>{{ formatDate(post.date) }}</time>
           </div>
         </div>
 
@@ -51,7 +64,7 @@
             <h3 class="font-bold mb-2 group-hover:text-primary transition-colors">
               {{ relatedPost.title }}
             </h3>
-            <p class="text-sm text-[#4c9a66] dark:text-[#a0ccb0]">{{ relatedPost.date }}</p>
+            <p class="text-sm text-[#4c9a66] dark:text-[#a0ccb0]">{{ formatDate(relatedPost.date) }}</p>
           </div>
         </router-link>
       </div>
@@ -62,6 +75,7 @@
 <script setup>
   import { ref, onMounted } from 'vue'
   import { useRoute } from 'vue-router'
+  import { formatDate } from '../utils/formatters'
 
   const route = useRoute()
   const post = ref(null)

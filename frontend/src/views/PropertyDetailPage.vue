@@ -43,7 +43,7 @@
               {{ property.location }}, Valencia, España
             </p>
           </div>
-          <p class="text-4xl font-black text-primary">{{ property.price }}€</p>
+          <p class="text-4xl font-black text-primary">{{ formatPrice(property.price) }}€</p>
         </div>
 
         <!-- Características Principales -->
@@ -227,6 +227,7 @@
 <script setup>
   import { ref, onMounted } from 'vue'
   import { useRoute } from 'vue-router'
+  import { formatPrice } from '../utils/formatters'
 
   const route = useRoute()
   const property = ref(null)

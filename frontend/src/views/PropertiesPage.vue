@@ -51,7 +51,7 @@
 
               <div class="flex justify-between items-start mb-2">
                 <h3 class="text-lg font-bold">{{ property.title }}</h3>
-                <p class="text-primary font-bold text-lg">{{ property.price }}€</p>
+                <p class="text-primary font-bold text-lg">{{ formatPrice(property.price) }}€</p>
               </div>
               <p class="text-[#4c9a66] dark:text-[#a0ccb0] text-sm flex items-center gap-1 mb-4">
                 <span class="material-symbols-outlined text-sm">location_on</span> {{ property.location }}
@@ -83,6 +83,7 @@
 <script setup>
   import { ref, computed, onMounted } from 'vue'
   import PropertyFilters from '../components/PropertyFilters.vue'
+  import { formatPrice } from '../utils/formatters'
 
   const properties = ref([])
   const loading = ref(true)
